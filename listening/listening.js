@@ -33,7 +33,7 @@ function startTimer() {
         updateStopwatch();
         if (timeElapsed <= 0) {
             clearInterval(timer);
-            endTest();
+            endTest('listening');
         }
     }, 1000);
 }
@@ -172,6 +172,7 @@ function getNextAvailableLevel(currentLevel, step) {
 
 // Ends the test, displays the final score and hides the form
 function endTest(testType) {  // Add testType argument to differentiate between tests
+    
     clearInterval(timer); // This line wil stop the timer
     let recommendedLevel = '';
     if (points >= 0 && points <= 5) {
@@ -194,15 +195,17 @@ function endTest(testType) {  // Add testType argument to differentiate between 
     messageElement.style.display = "none";
     
     // Save the test result into session storage
-    let testResult = {
-        testType: testType,
-        points: points,
-        listeningAverageScore: listeningAverageScore,
-        useOfEnglishAverageScore: useOfEnglishAverageScore,
-        recommendedLevel: recommendedLevel
-    };
+// Save the test result into local storage
+let testResult = {
+    testType: testType,
+    points: points,
+    listeningAverageScore: listeningAverageScore,
+    useOfEnglishAverageScore: useOfEnglishAverageScore,
+    recommendedLevel: recommendedLevel
+};
 
-    sessionStorage.setItem(testType, JSON.stringify(testResult));
+localStorage.setItem(testType, JSON.stringify(testResult));
+
 }
 
 
@@ -211,7 +214,7 @@ function startTest() {
     const question = getNextQuestion(currentLevel);
     if (question === null || currentLevel === null) {
         // If there are no more questions at the current level, end the test
-        endTest();
+        endTest('listening');
     } else {
         questionsAnswered.push(question);
         displayQuestion(question);
@@ -257,13 +260,14 @@ function submitAnswer() {
         }
         incorrectStreak++;
         consecutiveIncorrectAnswers++;  // Increment the consecutive incorrect answers counter
+        totalIncorrectAnswers++;  // Increment the total incorrect answers counter
     }
 
     // If there are no more questions at current level and also in previous level, then end test
     if (currentLevel === null || consecutiveIncorrectAnswers === 2) {
-        endTest();
+        endTest('listening');
     } else if (totalIncorrectAnswers === 5) {
-        endTest();
+        endTest('listening');
     } else {
         startTest();
     }

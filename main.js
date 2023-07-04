@@ -1,17 +1,55 @@
 window.onload = function() {
     const resultsDiv = document.getElementById('results');
-    const listeningTaken = sessionStorage.getItem('listeningTaken');
-    const useOfEnglishTaken = sessionStorage.getItem('useOfEnglishTaken');
-    const listeningScore = sessionStorage.getItem('listeningScore');
-    const useOfEnglishScore = sessionStorage.getItem('useOfEnglishScore');
+    const tests = ['use_of_english', 'listening'];
+    let completedTests = [];
+    let htmlContent = '';
+    let message = '';
 
-    if (listeningTaken === 'true' && useOfEnglishTaken === 'true') {
-        resultsDiv.innerHTML = `Congratulations, you completed both tests. Your average score for the use of English test was ${useOfEnglishScore} and your average score for the listening test was ${listeningScore}. According to this score, you should enrol in the English level ... course.`;
-    } else if (listeningTaken === 'true') {
-        resultsDiv.innerHTML = "Now take the use of English test.";
-    } else if (useOfEnglishTaken === 'true') {
-        resultsDiv.innerHTML = "Now take the listening test.";
+    tests.forEach((test) => {
+        const result = localStorage.getItem(test);
+        if (result) {
+            const { points, listeningAverageScore, useOfEnglishAverageScore, recommendedLevel } = JSON.parse(result);
+            let additionalContent = '';
+
+            if (test === 'use_of_english') {
+                additionalContent = `<p>Use of English Average Score: ${useOfEnglishAverageScore}</p>`;
+            } else if (test === 'listening') {
+                additionalContent = `<p>Listening Average Score: ${listeningAverageScore}</p>`;
+            }
+
+            htmlContent += `
+                <div class="result">
+                    <h2>${test.replace(/_/g, ' ').toUpperCase()} Results</h2>
+                    <p>Points: ${points}</p>
+                    ${additionalContent}
+                    <p>Recommended Level: ${recommendedLevel}</p>
+                </div>
+            `;
+
+            completedTests.push(test);
+        }
+    });
+
+    if (completedTests.length > 0) {
+        if (completedTests.length === 1 && completedTests[0] === 'use_of_english') {
+            message = "<p>Please take the listening test now.</p>";
+        }
+
+        resultsDiv.innerHTML = message + htmlContent;
+
+        // Create a button to clear the test results from local storage
+        const clearButton = document.createElement('button');
+        clearButton.textContent = 'Take test again';
+        clearButton.addEventListener('click', () => {
+            tests.forEach((test) => {
+                localStorage.removeItem(test);
+            });
+            resultsDiv.innerHTML = 'Test results cleared. You can now retake the test.';
+        });
+
+        // Append the button to the resultsDiv
+        resultsDiv.appendChild(clearButton);
     } else {
-        resultsDiv.innerHTML = "Take the use of English test, and then the listening test.";
+        resultsDiv.innerHTML = 'Please take all the tests.';
     }
-}
+};
