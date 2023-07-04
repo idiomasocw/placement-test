@@ -4,7 +4,7 @@ let timeLimit = 30 * 60; // 60 minutes in seconds
 let timeElapsed = timeLimit;
 let totalIncorrectAnswers = 0;
 let consecutiveIncorrectAnswers = 0;
-
+let testInProgress = true;
 
 // Add this code at the beginning of your script.js
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // This code will prevent the user from refreshing the page accidentally
     window.addEventListener('beforeunload', (e) => {
-        if (timeElapsed < timeLimit) {
+        if (timeElapsed < timeLimit && testInProgress) {
             e.preventDefault();
             e.returnValue = "Do you really want to refresh the page? The test is still in progress and you will lose your progress. Hit the 'Cancel' button to continue doing the test, and click the 'refresh' button to refresh the page.";
         }
@@ -172,7 +172,7 @@ function getNextAvailableLevel(currentLevel, step) {
 
 // Ends the test, displays the final score and hides the form
 function endTest(testType) {  // Add testType argument to differentiate between tests
-    
+    testInProgress = false;
     clearInterval(timer); // This line wil stop the timer
     let recommendedLevel = '';
     if (points >= 0 && points <= 5) {
