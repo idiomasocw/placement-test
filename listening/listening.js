@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         question.style.display = 'block';
         startTimer();
     });
-    // This code will prevent the user from refreshing the page accidentally
+
     window.addEventListener('beforeunload', (e) => {
         if (timeElapsed < timeLimit && testInProgress) {
             e.preventDefault();
@@ -61,10 +61,8 @@ let previousLevel = null;
 let incorrectStreak = 0;
 let questionsAnswered = [];
 let points = 0;
-let listeningScore = 0;  // Listening category score
-let useOfEnglishScore = 0;  // Use of English category score
-let listeningQuestionsCount = 0;  // Number of listening questions attempted
-let useOfEnglishQuestionsCount = 0;  // Number of use of english questions attempted
+let listeningScore = 0;
+let listeningQuestionsCount = 0;
 
 
 // Returns points based on the question level
@@ -171,9 +169,9 @@ function getNextAvailableLevel(currentLevel, step) {
 
 
 // Ends the test, displays the final score and hides the form
-function endTest(testType) {  // Add testType argument to differentiate between tests
+function endTest() {
     testInProgress = false;
-    clearInterval(timer); // This line wil stop the timer
+    clearInterval(timer);
     let recommendedLevel = '';
     if (points >= 0 && points <= 5) {
         recommendedLevel = 'A1';
@@ -186,26 +184,21 @@ function endTest(testType) {  // Add testType argument to differentiate between 
     } else if (points >= 130) {
         recommendedLevel = 'C1';
     }
-    // Calculate average scores for each category
+
     let listeningAverageScore = listeningQuestionsCount ? (listeningScore / listeningQuestionsCount).toFixed(2) : 0;
-    let useOfEnglishAverageScore = useOfEnglishQuestionsCount ? (useOfEnglishScore / useOfEnglishQuestionsCount).toFixed(2) : 0;
 
     questionElement.innerHTML = `The test is over. You scored <b>${points}</b> points. Your average Listening score is <b>${listeningAverageScore}%</b>. Based on your score, we recommend you enroll in the level <b>${recommendedLevel}</b> English course. Thank you for taking the test with us!`;
     answerForm.style.display = "none";
     messageElement.style.display = "none";
-    
-    // Save the test result into session storage
-// Save the test result into local storage
-let testResult = {
-    testType: testType,
-    points: points,
-    listeningAverageScore: listeningAverageScore,
-    useOfEnglishAverageScore: useOfEnglishAverageScore,
-    recommendedLevel: recommendedLevel
-};
 
-localStorage.setItem(testType, JSON.stringify(testResult));
+    let testResult = {
+        testType: 'listening',
+        points: points,
+        listeningAverageScore: listeningAverageScore,
+        recommendedLevel: recommendedLevel
+    };
 
+    localStorage.setItem('listening', JSON.stringify(testResult));
 }
 
 
@@ -238,14 +231,9 @@ function submitAnswer() {
         points += getPointsForLevel(question.level);
     }
 
-    // Add to specific category score and increment question count
-    if (question.audioUrl) {  // If question has an audioUrl, it's a Listening question
-        listeningScore += percentageCorrect;
-        listeningQuestionsCount++;
-    } else {  // Else, it's a Use of English question
-        useOfEnglishScore += percentageCorrect;
-        useOfEnglishQuestionsCount++;
-    }
+    // Add to Listening category score and increment question count
+    listeningScore += percentageCorrect;
+    listeningQuestionsCount++;
 
     if (correct) {
         let nextLevel = getNextAvailableLevel(currentLevel, 1);
@@ -274,7 +262,6 @@ function submitAnswer() {
 
     answerInputs.forEach(input => input.value = "");
 }
-
 
 
 answerForm.addEventListener('submit', (e) => {
