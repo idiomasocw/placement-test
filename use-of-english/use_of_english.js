@@ -69,15 +69,15 @@ let useOfEnglishQuestionsCount = 0;  // Number of use of english questions attem
 
 // Returns points based on the question level
 function getPointsForLevel(level) {
-    if (level >= 1 && level <= 3) {
+    if (level >= 1 && level <= 4) {
         return 1;
-    } else if (level >= 4 && level <= 6) {
+    } else if (level >= 5 && level <= 7) {
         return 3;
-    } else if (level >= 7 && level <= 9) {
+    } else if (level >= 8 && level <= 10) {
         return 9;
-    } else if (level >= 10 && level <= 12) {
+    } else if (level >= 11 && level <= 13) {
         return 27;
-    } else if (level >= 13 && level <= 15) {
+    } else if (level >= 14 && level <= 16) {
         return 81;
     } else {
         return 0;
@@ -158,7 +158,7 @@ function updateLevel(correct) {
 // Returns the next available level based on the current level and a step value
 function getNextAvailableLevel(currentLevel, step) {
     let nextLevel = currentLevel + step;
-    while (getNextQuestion(nextLevel) === null && nextLevel >= 1 && nextLevel <= 15) {
+    while (getNextQuestion(nextLevel) === null && nextLevel >= 1 && nextLevel <= 16) {
         nextLevel -= Math.sign(step);
     }
     // If no question available in next or previous level, return null to signal end of test
@@ -166,24 +166,26 @@ function getNextAvailableLevel(currentLevel, step) {
         return null;
     }
 
-    return Math.min(Math.max(nextLevel, 1), 15);
+    return Math.min(Math.max(nextLevel, 1), 16);
 }
 
 
 // Ends the test, displays the final score and hides the form
 function endTest(testType) {  // Add testType argument to differentiate between tests
     testInProgress = false;
+    const returnButton = document.querySelector('.returnToMenu');
+    returnButton.classList.remove('scaled');
     clearInterval(timer); // This line wil stop the timer
     let recommendedLevel = '';
-    if (points >= 0 && points <= 5) {
+    if (points >= 0 && points <= 15) {
         recommendedLevel = 'A1';
-    } else if (points >= 6 && points <= 12) {
+    } else if (points >= 16 && points <= 65) {
         recommendedLevel = 'A2';
-    } else if (points >= 13 && points <= 39) {
+    } else if (points >= 66 && points <= 115) {
         recommendedLevel = 'B1';
-    } else if (points >= 40 && points <= 130) {
+    } else if (points >= 116 && points <= 150) {
         recommendedLevel = 'B2';
-    } else if (points >= 130) {
+    } else if (points >= 151) {
         recommendedLevel = 'C1';
     }
     // Calculate average scores for each category
@@ -212,6 +214,8 @@ localStorage.setItem(testType, JSON.stringify(testResult));
 // Starts the test by getting the next question and displaying it
 function startTest() {
     const question = getNextQuestion(currentLevel);
+    const returnButton = document.querySelector('.returnToMenu');
+    returnButton.classList.add('scaled');
     if (question === null || currentLevel === null) {
         // If there are no more questions at the current level, end the test
         endTest('use_of_english');

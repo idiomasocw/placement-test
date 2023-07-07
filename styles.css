@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #0e124d;
-    padding: 50px;
+    padding: 10px 40px 40px 40px;
     color:#0e124d;
 }
 
@@ -22,6 +22,8 @@ body {
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+    animation: scaleAnimation 1s infinite alternate;
 }
 .main-menu {text-align: center;}
 
@@ -66,10 +68,12 @@ body {
 
 #use-of-english {
     background-image: url('/images/grammar.jpg');
+    background-color: rgba(41, 47, 140, 0.3);
 }
 
 #listening {
     background-image: url('/images/listening.png');
+    background-color: rgba(41, 47, 140, 0.3);
 }
 
 #main-menu-header{
@@ -179,7 +183,7 @@ button:hover {
 
 hr{opacity: 0;}
 
-audio#audio{opacity: 0.55;background-color: #45a049;border-radius: 22px;}
+audio#audio{opacity: 0.85;background-color: #45a049;border-radius: 22px;}
 
 .option-btn {
     display: block;
@@ -214,3 +218,54 @@ audio#audio{opacity: 0.55;background-color: #45a049;border-radius: 22px;}
 .result p {
     margin: 0 0 5px;
 }
+
+.options-container {
+    display: flex;
+    justify-content: center; 
+    flex-direction: column;
+}
+
+.radio-option {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    margin: auto;
+    word-wrap: break-word;
+}
+
+
+.radio-buttons {
+width: 100%;}
+
+.option {
+
+}
+
+#audio{
+    max-width:17rem;
+    height: 2.5rem;
+    margin: auto;
+}
+
+.listening-prompt{
+    margin-bottom: 10px;
+    background-color: rgba(225, 249, 228, 0.31);
+    border-radius: 10px;
+    padding: 2px;
+    border: #fff solid 1px;
+}
+
+  
+  @keyframes scaleAnimation {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.2);
+    }
+  }
+  
+  .returnToMenu.scaled {
+    animation: none;
+    transform: scale(1.2);
+  }

@@ -67,15 +67,15 @@ let listeningQuestionsCount = 0;
 
 // Returns points based on the question level
 function getPointsForLevel(level) {
-    if (level >= 1 && level <= 3) {
+    if (level >= 1 && level <= 4) {
         return 1;
-    } else if (level >= 4 && level <= 6) {
+    } else if (level >= 5 && level <= 7) {
         return 3;
-    } else if (level >= 7 && level <= 9) {
+    } else if (level >= 8 && level <= 10) {
         return 9;
-    } else if (level >= 10 && level <= 12) {
+    } else if (level >= 11 && level <= 13) {
         return 27;
-    } else if (level >= 13 && level <= 15) {
+    } else if (level >= 14 && level <= 16) {
         return 81;
     } else {
         return 0;
@@ -103,12 +103,57 @@ function displayQuestion(question) {
         }
 
         questionElement.innerHTML = `
-            <audio id="audio" controls controlsList="nodownload">
+        <div class="audioContainer">
+            <audio id="audio" controls controlsList="nodownload" playbackRate="1" disableRemotePlayback">
                 <source src="${question.audioUrl}" type="audio/mpeg">
                 Your browser does not support the audio element.
-            </audio><hr>
-        `;
-        questionElement.innerHTML += question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
+            </audio>
+        </div>
+        <hr>
+    `;
+    
+    const tempContainer = document.createElement('div');
+    tempContainer.className = 'options-container'; // Add a class to the container
+    
+    if (question.options) {
+        const listeningPromptContainer = document.createElement('div');
+        listeningPromptContainer.className = 'listening-prompt'; // Add a class to the listening prompt container
+    
+        const listeningPromptText = document.createElement('p');
+        listeningPromptText.textContent = question.text;
+        listeningPromptContainer.appendChild(listeningPromptText);
+    
+        tempContainer.appendChild(listeningPromptContainer);
+    
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'radio-buttons'; // Add a class to the radio buttons container
+    
+        question.options.forEach(option => {
+            const optionElement = document.createElement('input');
+            optionElement.type = 'radio';
+            optionElement.name = 'option';
+            optionElement.className = 'option'; // Add a class to the radio button
+            optionElement.value = option;
+            const optionText = document.createTextNode(option);
+    
+            const optionContainer = document.createElement('div');
+            optionContainer.className = 'radio-option'; // Add a class to the option container
+    
+            optionContainer.appendChild(optionElement);
+            optionContainer.appendChild(optionText);
+            optionsContainer.appendChild(optionContainer);
+        });
+    
+        tempContainer.appendChild(optionsContainer);
+    }
+
+     else {
+            tempContainer.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
+        }
+
+        while (tempContainer.firstChild) {
+            questionElement.appendChild(tempContainer.firstChild);
+        }
 
         const audioElement = document.getElementById('audio');
         audioElement.addEventListener('play', () => {
@@ -120,12 +165,16 @@ function displayQuestion(question) {
             }
         });
     } else {
-        questionElement.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
+        if (question.options) {
+            questionElement.innerHTML = question.text + "<br>";
+            question.options.forEach(option => {
+                questionElement.innerHTML += `<div class="radio-option"><input type="radio" name="option" value="${option}">${option}</div>`;
+            });
+            
+        } else {
+            questionElement.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
+        }
     }
-
-    // Focus the input field
-    const inputField = document.querySelector('.blank');
-    inputField.focus();
 }
 
 
@@ -170,6 +219,8 @@ function getNextAvailableLevel(currentLevel, step) {
 
 // Ends the test, displays the final score and hides the form
 function endTest() {
+    const returnButton = document.querySelector('.returnToMenu');
+    returnButton.classList.remove('scaled');
     testInProgress = false;
     clearInterval(timer);
     let recommendedLevel = '';
@@ -204,6 +255,8 @@ function endTest() {
 
 // Starts the test by getting the next question and displaying it
 function startTest() {
+    const returnButton = document.querySelector('.returnToMenu');
+    returnButton.classList.add('scaled');
     const question = getNextQuestion(currentLevel);
     if (question === null || currentLevel === null) {
         // If there are no more questions at the current level, end the test
@@ -216,7 +269,7 @@ function startTest() {
 
 // Submits the answer, validates it and updates the score, level, and incorrect streak
 function submitAnswer() {
-    const answerInputs = document.querySelectorAll('.blank');
+    const answerInputs = document.querySelectorAll('.option:checked, .blank');
     if (answerInputs.length === 0) return;
     const answers = Array.from(answerInputs).map(input => input.value.trim());
     if (answers.some(answer => !answer)) return;
@@ -235,21 +288,7 @@ function submitAnswer() {
     listeningScore += percentageCorrect;
     listeningQuestionsCount++;
 
-    if (correct) {
-        let nextLevel = getNextAvailableLevel(currentLevel, 1);
-        if (nextLevel !== null) {
-            currentLevel = nextLevel;
-        }
-        consecutiveIncorrectAnswers = 0;  // Reset the consecutive incorrect answers counter
-    } else {
-        let previousLevel = getNextAvailableLevel(currentLevel, -1);
-        if (previousLevel !== null) {
-            currentLevel = previousLevel;
-        }
-        incorrectStreak++;
-        consecutiveIncorrectAnswers++;  // Increment the consecutive incorrect answers counter
-        totalIncorrectAnswers++;  // Increment the total incorrect answers counter
-    }
+    updateLevel(correct);
 
     // If there are no more questions at current level and also in previous level, then end test
     if (currentLevel === null || consecutiveIncorrectAnswers === 2) {

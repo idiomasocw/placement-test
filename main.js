@@ -44,12 +44,12 @@ window.onload = function() {
             tests.forEach((test) => {
                 localStorage.removeItem(test);
             });
-            resultsDiv.innerHTML = 'Test results cleared. You can now retake the test.';
+            resultsDiv.innerHTML = 'You can retake the test now.';
         });
 
         // Append the button to the resultsDiv
         resultsDiv.appendChild(clearButton);
     } else {
-        resultsDiv.innerHTML = 'Please take all the tests.';
+        resultsDiv.innerHTML = 'You can now take the Use of English and the Listening tests.';
     }
 };
