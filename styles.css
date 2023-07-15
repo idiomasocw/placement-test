@@ -67,12 +67,12 @@ body {
 
 
 #use-of-english {
-    background-image: url('/images/grammar.jpg');
+    background-image: url('https://ocw-program.s3.amazonaws.com/Placement-test/Pics/grammar.jpg');
     background-color: rgba(41, 47, 140, 0.3);
 }
 
 #listening {
-    background-image: url('/images/listening.png');
+    background-image: url('https://ocw-program.s3.amazonaws.com/Placement-test/Pics/Listening.png');
     background-color: rgba(41, 47, 140, 0.3);
 }
 
