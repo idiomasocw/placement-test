@@ -43,5 +43,4 @@ var questions = [
     options: ["The man didn't allow the woman to close the door", "The man allowed the woman to close the door", "The woman asked the man to close the door"]
 }
 
-
 ];
