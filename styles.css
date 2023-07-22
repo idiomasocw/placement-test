@@ -255,6 +255,13 @@ width: 100%;}
     border: #fff solid 1px;
 }
 
+.grammar-prompt{
+    margin-bottom: 10px;
+    background-color: rgba(225, 249, 228, 0.31);
+    border-radius: 10px;
+    padding: 2px;
+    border: #fff solid 1px;
+}
   
   @keyframes scaleAnimation {
     from {

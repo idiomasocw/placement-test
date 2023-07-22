@@ -90,7 +90,7 @@ function getNextQuestion(level) {
     return availableQuestions[randomIndex];
 }
 
-// Displays the question on the screen and replaces the placeholder with an input field
+// Displays the question on the screen and replaces the placeholder with an input field, includes multiple choice- listening section
 let playCount = 0;
 let currentAudioId = null;
 

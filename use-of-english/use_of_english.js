@@ -56,7 +56,7 @@ const questionElement = document.getElementById('question');
 const answerForm = document.getElementById('answer-form');
 const messageElement = document.getElementById('message');
 
-let currentLevel = 2;
+let currentLevel = 1;
 let previousLevel = null;
 let incorrectStreak = 0;
 let questionsAnswered = [];
@@ -73,11 +73,11 @@ function getPointsForLevel(level) {
         return 1;
     } else if (level >= 5 && level <= 7) {
         return 3;
-    } else if (level >= 8 && level <= 10) {
+    } else if (level >= 8 && level <= 13) {
         return 9;
-    } else if (level >= 11 && level <= 13) {
+    } else if (level >= 14 && level <= 19) {
         return 27;
-    } else if (level >= 14 && level <= 16) {
+    } else if (level >= 20 && level <= 25) {
         return 81;
     } else {
         return 0;
@@ -92,11 +92,14 @@ function getNextQuestion(level) {
     return availableQuestions[randomIndex];
 }
 
-// Displays the question on the screen and replaces the placeholder with an input field
+// Displays the question on the screen and replaces the placeholder with an input field - use of english
 let playCount = 0;
 let currentAudioId = null;
 
 function displayQuestion(question) {
+    // Clear the previous question
+    questionElement.innerHTML = '';
+
     if (question.audioUrl) {
         // Check if the audio is from a different question
         if (currentAudioId !== question.id) {
@@ -110,7 +113,46 @@ function displayQuestion(question) {
                 Your browser does not support the audio element.
             </audio><hr>
         `;
-        questionElement.innerHTML += question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
+        const tempContainer = document.createElement('div');
+        tempContainer.className = 'options-container'; // Add a class to the container 
+
+        const grammarPromptContainer = document.createElement('div');
+        grammarPromptContainer.className = 'grammar-prompt'; // Add a class to the grammar prompt container
+        const grammarPromptText = document.createElement('p');
+        grammarPromptText.innerHTML = question.text;
+        grammarPromptContainer.appendChild(grammarPromptText);
+        tempContainer.appendChild(grammarPromptContainer);
+
+        if (question.options) {
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'radio-buttons'; // Add a class to the radio buttons container
+
+            question.options.forEach(option => {
+                const optionElement = document.createElement('input');
+                optionElement.type = 'radio';
+                optionElement.name = 'option';
+                optionElement.className = 'option'; // Add a class to the radio button
+                optionElement.value = option;
+                const optionText = document.createTextNode(option);
+
+                const optionContainer = document.createElement('div');
+                optionContainer.className = 'radio-option'; // Add a class to the option container
+
+                optionContainer.appendChild(optionElement);
+                optionContainer.appendChild(optionText);
+                optionsContainer.appendChild(optionContainer);
+            });
+
+            tempContainer.appendChild(optionsContainer);
+        } else {
+            const textContainer = document.createElement('div');
+            textContainer.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
+            grammarPromptContainer.appendChild(textContainer);
+        }
+
+        while (tempContainer.firstChild) {
+            questionElement.appendChild(tempContainer.firstChild);
+        }
 
         const audioElement = document.getElementById('audio');
         audioElement.addEventListener('play', () => {
@@ -122,14 +164,37 @@ function displayQuestion(question) {
             }
         });
     } else {
-        questionElement.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
+        const grammarPromptContainer = document.createElement('div');
+        grammarPromptContainer.className = 'grammar-prompt'; // Add a class to the grammar prompt container
+
+        const grammarPromptText = document.createElement('p');
+        grammarPromptText.innerHTML = question.text;
+        grammarPromptContainer.appendChild(grammarPromptText);
+        questionElement.appendChild(grammarPromptContainer);
+
+        if (question.options) {
+            question.options.forEach(option => {
+                const optionContainer = document.createElement('div');
+                optionContainer.className = 'radio-option'; // Add a class to the option container
+                const optionElement = document.createElement('input');
+                optionElement.type = 'radio';
+                optionElement.name = 'option';
+                optionElement.className = 'option'; // Add a class to the radio button
+                optionElement.value = option;
+                const optionText = document.createTextNode(option);
+                optionContainer.appendChild(optionElement);
+                optionContainer.appendChild(optionText);
+                questionElement.appendChild(optionContainer);
+            });
+        } else {
+            questionElement.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
+        }
     }
 
     // Focus the input field
     const inputField = document.querySelector('.blank');
-    inputField.focus();
+    if (inputField) inputField.focus();
 }
-
 
 
 // Checks if the submitted answer matches any of the correct answers
@@ -158,7 +223,7 @@ function updateLevel(correct) {
 // Returns the next available level based on the current level and a step value
 function getNextAvailableLevel(currentLevel, step) {
     let nextLevel = currentLevel + step;
-    while (getNextQuestion(nextLevel) === null && nextLevel >= 1 && nextLevel <= 16) {
+    while (getNextQuestion(nextLevel) === null && nextLevel >= 1 && nextLevel <= 25) {
         nextLevel -= Math.sign(step);
     }
     // If no question available in next or previous level, return null to signal end of test
@@ -166,7 +231,7 @@ function getNextAvailableLevel(currentLevel, step) {
         return null;
     }
 
-    return Math.min(Math.max(nextLevel, 1), 16);
+    return Math.min(Math.max(nextLevel, 1), 25);
 }
 
 
@@ -227,10 +292,24 @@ function startTest() {
 
 // Submits the answer, validates it and updates the score, level, and incorrect streak
 function submitAnswer() {
-    const answerInputs = document.querySelectorAll('.blank');
-    if (answerInputs.length === 0) return;
-    const answers = Array.from(answerInputs).map(input => input.value.trim());
-    if (answers.some(answer => !answer)) return;
+    let answers = [];
+    const radioOptions = document.querySelectorAll('input[name="option"]');
+    if (radioOptions.length > 0) {
+        // This block is for radio button options (Multiple-choice questions)
+        radioOptions.forEach(option => {
+            if (option.checked) {
+                answers.push(option.value);
+            }
+        });
+    } else {
+        // This block is for fill-in-the-blank type questions
+        const answerInputs = document.querySelectorAll('.blank');
+        if (answerInputs.length > 0) {
+            answers = Array.from(answerInputs).map(input => input.value.trim());
+            if (answers.some(answer => !answer)) return;
+        }
+    }
+
     const question = questionsAnswered[questionsAnswered.length - 1];
     const correctAnswers = checkAnswer(question, answers);
 
@@ -276,9 +355,14 @@ function submitAnswer() {
         startTest();
     }
 
-    answerInputs.forEach(input => input.value = "");
+    // Clear the values of answerInputs after submitting the answer
+    if (radioOptions.length > 0) {
+        radioOptions.forEach(option => option.checked = false);
+    } else {
+        const answerInputs = document.querySelectorAll('.blank');
+        answerInputs.forEach(input => input.value = "");
+    }
 }
-
 
 
 answerForm.addEventListener('submit', (e) => {
