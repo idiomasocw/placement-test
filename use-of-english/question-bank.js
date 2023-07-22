@@ -35,7 +35,13 @@ var questions = [
         options: ["their", "them", "him", "their"]
     },
     {text: "<b>Peter: </b> Now tell me about your sister. How many children does *she* have?<br><b>Jude: </b> She *has* two sons and a daughter", id:11, answer: ["she","has"], level: 3},
-    {text: "<b>John: </b>Do you know Paul McCartney?<br><b>Paul: </b> No, I don't know *him*. Who is he?", id:12, answer: ["him"], level: 4},
+    {
+        text: "<b>John: </b>Do you know Paul McCartney?<br><b>Paul: </b> No, I don't know ___. Who is he?",
+        id: 12,
+        answer: ["him"],
+        level: 4,
+        options: ["his", "he", "him", "she"]
+    },
     {text: "<b>Barbara: </b>What *was* your favorite TV program when you were a kid?", id:13, answer: ["was"], level: 4},
     {text: "<b>Jessica: </b>*Did* you go shopping yesterday?<br><b>Andrew: </b>No, I didn't. but I'll go shopping tonight.", id:14, answer: ["did"], level: 4},
     {
@@ -119,16 +125,218 @@ var questions = [
     },
     {
         text: "There isn't ____ sugar in the pantry to bake a cake, we need to buy some.",
-        id: 33,
-        answer: ["couldn't"],
+        id: 34,
+        answer: ["enough"],
         level: 11,
         options: ["enough", "many", "some", "too much"]
     },
     {
         text: "There aren't ____ apples left in the fruit bowl, it looks like we've eaten them all",
-        id: 33,
+        id: 35,
         answer: ["any"],
         level: 11,
         options: ["some", "the", "an", "any"]
     },
+    {
+        text: "There are ____ interesting books on the shelf that you might enjoy reading.",
+        id: 36,
+        answer: ["some"],
+        level: 11,
+        options: ["a lot", "lots", "much", "some"]
+    },
+    {
+        text: "This summer is ___ last year's.",
+        id: 37,
+        answer: ["hotter than"],
+        level: 12,
+        options: ["hotter that", "more hot", "hotter than", "the hottest that"]
+    },
+    {
+        text: "Mount Everest is ___ peak in the world, but K2 is more difficult to climb.",
+        id: 38,
+        answer: ["the highest"],
+        level: 12,
+        options: ["the higher", "higher than", "a higher that", "the highest"]
+    },
+    {
+        text: "I’m proud of you. You’re lasagna is now ______ mine.",
+        id: 39,
+        answer: ["as good as"],
+        level: 12,
+        options: ["as good as", "more good", "better", "the best"]
+    },
+    {
+        text: "She has been studying French ____",
+        id: 40,
+        answer: ["for two years"],
+        level: 13,
+        options: ["for two years", "since two years", "three years ago", "last week"]
+    },
+    {
+        text: "How long _____ him? <br> Since high school",
+        id: 41,
+        answer: ["have you known"],
+        level: 13,
+        options: ["have you known", "are you knowing", "can you know", "does she knew"]
+    },
+    {
+        text: "<b>We: </b>haven’t seen them *since* last year.",
+        id: 42,
+        answer: ["since"],
+        level: 13
+    },
+    {
+        text: "<b>Speaker: </b>When I first moved to New York, the loud city noise and the many people *were* very new to me. I grew up in a small town, so this was a big change for me. In fact, before moving to New York, I *had* never seen a building taller *than* three stories! But over time, I got used *to* the busy city life and its tall buildings. I think I *have* adapted myself very well. I went to college, got a good job and I recently got promoted to operations manager of a big company.",
+        id: 43,
+        answer: ["were", "had", "than", "to", "have"],
+        level: 14
+    },
+    {
+        text: "<b>Speaker: </b>Last year, I decided *to* adopt a puppy from the local shelter. I *had* never taken care of a dog before, so it was a big step for me. However, I quickly got used to the routine of feeding and walking her. Now, I can't imagine life without my dog. She *has* brought so much joy into my life. In fact, I’ve *been* thinking of adopting another dog, but my girlfriend says having one dog is more *than* enough.",
+        id: 44,
+        answer: ["to", "had", "has", "been", "than"],
+        level: 14
+    },
+    {
+        text: "<b>Speaker: </b>When I first started learning guitar, I found it very difficult. Especially because it was my first musical instrument and I *had* never studied music before. *At* the beginning, the strings hurt my fingers so bad, but as time went by, I got used to the feeling of the strings and fell in love *with* the instrument. It’s *been* three years since I first started my guitar lessons, and I think it’s *the* best decision I’ve *made* in my life. I think playing the guitar is really my thing!",
+        id: 45,
+        answer: ["had", "At", "with", "been", "the", "made"],
+        level: 14
+    },
+    {
+        text: "It took me a while to ______ driving on the right side of the road when I moved to the United States. In my home country, we drive on the left side.",
+        id: 46,
+        answer: ["get used to"],
+        level: 15,
+        options: ["get used to", "used to", "accustom", "be used"]
+    },
+    {
+        text: "I ______ play basketball in high school, but I stopped when I went to college due to my busy schedule.",
+        id: 47,
+        answer: ["used to"],
+        level: 15,
+        options: ["used to", "accustomed", "was used to", "got used to"]
+    },
+    {
+        text: "In a few months, _____ the new software we’re implementing. It might seem complicated now, but it will become second nature with practice.",
+        id: 48,
+        answer: ["you’ll be used to"],
+        level: 15,
+        options: ["you’ll be used to", "you’ll get used", "he’ll be accustomed", "he will accustom to"]
+    },
+    {
+        text: "If I ______ you, I wouldn’t worry about money, I’d focus more on making it.",
+        id: 49,
+        answer: ["were"],
+        level: 16,
+        options: ["were", "am", "believe", "understand"]
+    },
+    {
+        text: "I’d never move to a new city if I _____ have a good support system there. Having friends and family close by is essential to me.",
+        id: 50,
+        answer: ["didn’t"],
+        level: 16,
+        options: ["didn’t", "couldn’t", "shouldn’t", "need to"]
+    },
+    {
+        text: "If she _____ more careful, she wouldn’t have lost her wallet in the park.",
+        id: 51,
+        answer: ["had been"],
+        level: 16,
+        options: ["had been", "were", "could have been", "have been"]
+    },
+    {
+        text: "If I ______ the chance, I’d definitely go back in time and buy Bitcoin when it was still cheap!",
+        id: 52,
+        answer: ["had"],
+        level: 16,
+        options: ["had", "got", "have", "could"]
+    },
+    {
+        text: "She ______ by a venomous snake while she was hiking in the forest. Luckily, she was with her friends who quickly took her to a nearby hospital.",
+        id: 53,
+        answer: ["was bitten"],
+        level: 17,
+        options: ["was bitten", "bitten", "bit", "bites"]
+    },
+    {
+        text: "The new skyscraper ______ in the city center is going to be the tallest building in the country once it’s completed.",
+        id: 54,
+        answer: ["being built"],
+        level: 17,
+        options: ["being built", "is built", "was built", "that building"]
+    },
+    {
+        text: "Don’t worry, your report ______ by the end of the day. I’m working on it so you can check it first thing tomorrow morning.",
+        id: 55,
+        answer: ["will be completed"],
+        level: 17,
+        options: ["will be completed", "will complete", "was submitted", "was complete"]
+    },
+    {
+        text: "He _____ that he had lived in Spain when he was a kid.",
+        id: 56,
+        answer: ["told me"],
+        level: 18,
+        options: ["told me", "said me", "mention me", "tells"]
+    },
+    {
+        text: "When she was a kid, she promised that she would become a famous book writer, and she did it.",
+        id: 57,
+        answer: ["would become"],
+        level: 18,
+        options: ["would become", "is going to become", "plan to become", "won’t become"]
+    },
+    {
+        text: "She asked me _______ come late again.",
+        id: 58,
+        answer: ["not to"],
+        level: 18,
+        options: ["not to", "don’t", "please not", "no"]
+    },
+    {
+        text: "We _______ arrived on time if the traffic hadn’t been so bad.",
+        id: 59,
+        answer: ["would’ve"],
+        level: 19,
+        options: ["would’ve", "wouldn’t", "had", "would"]
+    },
+    {
+        text: "If you had studied before the test, you _____ failed it.",
+        id: 60,
+        answer: ["wouldn’t have"],
+        level: 19,
+        options: ["wouldn’t have", "hadn’t", "didn’t", "would never"]
+    },
+    {
+        text: "What _______ done in that situation if you were me?",
+        id: 61,
+        answer: ["would you have"],
+        level: 19,
+        options: ["would you have", "would you", "was being", "had you"]
+    },
+    {
+        text: "<b>Susan: </b>*Was* it raining when you got home last night?</br><b>John: </b>I don't remember. I rarely notice anything when I'm tired, and I *was* exhausted last night.",
+        id: 62,
+        answer: ["was","was"],
+        level: 11
+    },
+    {
+        text: "<b>Rachel: </b>How long *have* you lived in Canada? </br><b>Monica: </b>Since 2004. So, it’s been about 20 years. I love this place, and now it *is* my second home.",
+        id: 63,
+        answer: ["have","is"],
+        level: 12
+    },
+    {
+        text: "<b>Liam: </b>I’ve never seen this kind of bird before. What *is* it? </br><b>Emma: </b>It’s a Scarlet Macaw. They *are* native to Central and South America.",
+        id: 64,
+        answer: ["is","are"],
+        level: 13
+    },
+    {
+        text: "<b>Oliver: </b>What *did* you do when you realized you were lost in the city? </br><b>Mia: </b>First, I panicked. Then, I *asked* a passerby for help. They were really kind and helped me find my way.",
+        id: 65,
+        answer: ["did","asked"],
+        level: 14
+    }
 ];
