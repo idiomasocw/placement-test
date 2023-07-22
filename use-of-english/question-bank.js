@@ -46,7 +46,7 @@ var questions = [
         options: ["long", "time", "many", "old"]
     },
     {text: "My name's Joe, and I want *to* tell you a little *about* myself. I live in a small town called Greenfield. I'm *a* high school student and I love learning new things. In *my* free time, I enjoy reading books and watching movies. I also like going for walks in the park and playing soccer *with* my friends. I have a pet dog named Max, and he's my best friend. He can't live without me, and I can't live without him either. I think pets make life more interesting. What about you? Do you think pets make life more enjoyable?", id:16, answer: ["to", "about", "a", "my", "with"], level: 5},
-    {text: "Hi everyone! I'm Mark and I am *an* engineer. I work for a company named 'Future Tech'. I began working there like 3 years *ago*, and I really like my job. I love it because I learn about new technologies and I like my co-workers. They *are* awesome! I live in the city and I like its vibrant energy. In my spare time, I like *to* read books, especially those related to science and technology. I also love to play chess *with* my friends and go for jogs in the morning. I believe staying healthy is as important as working hard.", id:17, answer: ["an", "ago", "are", "to","with"], level: 5},
+    {text: "Hi everyone! I'm Mark and I am *an* engineer. I work for a company named 'Future Tech'. I began working there 3 years *ago*, and I really like my job. I love it because I learn about new technologies and I like my co-workers. They *are* awesome! I live in the city and I like its vibrant energy. In my spare time, I like *to* read books, especially those related to science and technology. I also love to play chess *with* my friends and go for jogs in the morning. I believe staying healthy is as important as working hard.", id:17, answer: ["an", "ago", "are", "to","with"], level: 5},
     {text: "Hi, I'm Billy, and I'd like *to* talk a little *about* myself. I work as *a* gardener in a large park in the city. I love my job because I always enjoy being around nature. I live in a small house near the park. Last year, I adopted a cat from the local animal shelter. She's called Misty and she's now my best friend. We spend a lot *of* time together, especially when I get home from work. Sometimes we sit in the garden and watch the birds until it gets dark. *On* Saturdays, we always watch movies until midnight. Misty loves being on the sofa, and I love watching comedy movies with her", id:18, answer: ["to", "about","a", "of", "on"], level: 5},
       {
         text: "<b>Susan: </b>What ___ your father look like?</br><b>Jessica: </b>He's tall with short, gray hair and wears glasses. He always has a friendly smile on his face",
@@ -81,5 +81,54 @@ var questions = [
         answer: ["are you doing"],
         level: 9,
         options: ["are you doing", "are you do", "do you do", "did you do"]
+    },
+    {
+        text: "The hospital is ___ the bank",
+        id: 29,
+        answer: ["opposite"],
+        level: 9,
+        options: ["in front", "opposite", "next", "among"]
+    },
+    {
+        text: "The books are ___ top of the shelf",
+        id: 30,
+        answer: ["on"],
+        level: 9,
+        options: ["on", "in", "under", "between"]
+    },
+    {
+        text: "<b>Linda: </b> You ___ buy shoes in a library.",
+        id: 31,
+        answer: ["can't"],
+        level: 10,
+        options: ["should", "must", "are able", "can't"]
+    },
+    {
+        text: "You _____ wear a uniform to school on Fridays. You know it's not mandatory. It's up to you.",
+        id: 32,
+        answer: ["don't have to"],
+        level: 10,
+        options: ["couldn't", "must", "don't have to", "shouldn't"]
+    },
+    {
+        text: "I'm sorry I ____ submit the report on time yesterday. My computer broke down.",
+        id: 33,
+        answer: ["couldn't"],
+        level: 10,
+        options: ["couldn't", "shouldn't", "can", "can't"]
+    },
+    {
+        text: "There isn't ____ sugar in the pantry to bake a cake, we need to buy some.",
+        id: 33,
+        answer: ["couldn't"],
+        level: 11,
+        options: ["enough", "many", "some", "too much"]
+    },
+    {
+        text: "There aren't ____ apples left in the fruit bowl, it looks like we've eaten them all",
+        id: 33,
+        answer: ["any"],
+        level: 11,
+        options: ["some", "the", "an", "any"]
     },
 ];

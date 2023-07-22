@@ -56,7 +56,7 @@ const questionElement = document.getElementById('question');
 const answerForm = document.getElementById('answer-form');
 const messageElement = document.getElementById('message');
 
-let currentLevel = 1;
+let currentLevel = 2;
 let previousLevel = null;
 let incorrectStreak = 0;
 let questionsAnswered = [];
@@ -176,14 +176,16 @@ function displayQuestion(question) {
             question.options.forEach(option => {
                 const optionContainer = document.createElement('div');
                 optionContainer.className = 'radio-option'; // Add a class to the option container
+                const optionLabel = document.createElement('label');
                 const optionElement = document.createElement('input');
                 optionElement.type = 'radio';
                 optionElement.name = 'option';
                 optionElement.className = 'option'; // Add a class to the radio button
                 optionElement.value = option;
+                optionLabel.appendChild(optionElement);
                 const optionText = document.createTextNode(option);
-                optionContainer.appendChild(optionElement);
-                optionContainer.appendChild(optionText);
+                optionLabel.appendChild(optionText);
+                optionContainer.appendChild(optionLabel);
                 questionElement.appendChild(optionContainer);
             });
         } else {
@@ -223,16 +225,37 @@ function updateLevel(correct) {
 // Returns the next available level based on the current level and a step value
 function getNextAvailableLevel(currentLevel, step) {
     let nextLevel = currentLevel + step;
-    while (getNextQuestion(nextLevel) === null && nextLevel >= 1 && nextLevel <= 25) {
-        nextLevel -= Math.sign(step);
-    }
-    // If no question available in next or previous level, return null to signal end of test
-    if (getNextQuestion(nextLevel) === null) {
-        return null;
+    
+    while (getNextQuestion(nextLevel) === null) {
+        // If we're stepping up and there are no more questions at higher levels
+        if (step > 0) {
+            // Try to get a question at the current level
+            if (getNextQuestion(currentLevel) !== null) {
+                return currentLevel;
+            }
+            // If there's no question at the current level, step down
+            else {
+                step = -1;
+            }
+        }
+        // If we're stepping down and there are no more questions at lower levels
+        else if (step < 0) {
+            // If there are no more questions at the current level, it's the end of the test
+            if (getNextQuestion(currentLevel) === null) {
+                return null;
+            }
+            // If there's a question at the current level, return current level
+            else {
+                return currentLevel;
+            }
+        }
+
+        nextLevel += step;
     }
 
-    return Math.min(Math.max(nextLevel, 1), 25);
+    return nextLevel;
 }
+
 
 
 // Ends the test, displays the final score and hides the form
@@ -282,7 +305,7 @@ function startTest() {
     const returnButton = document.querySelector('.returnToMenu');
     returnButton.classList.add('scaled');
     if (question === null || currentLevel === null) {
-        // If there are no more questions at the current level, end the test
+        // If there are no more questions at the current level or if currentLevel is null, end the test
         endTest('use_of_english');
     } else {
         questionsAnswered.push(question);
