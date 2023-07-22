@@ -239,104 +239,73 @@ var questions = [
         options: ["didn’t", "couldn’t", "shouldn’t", "need to"]
     },
     {
-        text: "If she _____ more careful, she wouldn’t have lost her wallet in the park.",
+        text: "I’m still feeling a bit under the weather, but I’ll definitely go to the party if I ___ better tomorrow.",
         id: 51,
-        answer: ["had been"],
+        answer: ["feel"],
         level: 16,
-        options: ["had been", "were", "could have been", "have been"]
+        options: ["feel", "will feel", "will be", "felt"]
     },
     {
-        text: "If I ______ the chance, I’d definitely go back in time and buy Bitcoin when it was still cheap!",
+        text: "The books ____ by genre in this library, making it easier for people to find what they want.",
         id: 52,
-        answer: ["had"],
-        level: 16,
-        options: ["had", "got", "have", "could"]
+        answer: ["are sorted"],
+        level: 17,
+        options: ["are sorted", "sort", "are sorting", "will sort"]
     },
     {
-        text: "She ______ by a venomous snake while she was hiking in the forest. Luckily, she was with her friends who quickly took her to a nearby hospital.",
+        text: "The new highway _____ to reduce traffic in the city center. It should be completed by the end of next year.",
         id: 53,
-        answer: ["was bitten"],
+        answer: ["is being built"],
         level: 17,
-        options: ["was bitten", "bitten", "bit", "bites"]
-    },
-    {
-        text: "The new skyscraper ______ in the city center is going to be the tallest building in the country once it’s completed.",
-        id: 54,
-        answer: ["being built"],
-        level: 17,
-        options: ["being built", "is built", "was built", "that building"]
+        options: ["is being built", "will build", "was built", "is building"]
     },
     {
         text: "Don’t worry, your report ______ by the end of the day. I’m working on it so you can check it first thing tomorrow morning.",
-        id: 55,
+        id: 54,
         answer: ["will be completed"],
         level: 17,
         options: ["will be completed", "will complete", "was submitted", "was complete"]
     },
     {
         text: "He _____ that he had lived in Spain when he was a kid.",
-        id: 56,
+        id: 55,
         answer: ["told me"],
         level: 18,
         options: ["told me", "said me", "mention me", "tells"]
     },
     {
         text: "When she was a kid, she promised that she would become a famous book writer, and she did it.",
-        id: 57,
+        id: 56,
         answer: ["would become"],
         level: 18,
         options: ["would become", "is going to become", "plan to become", "won’t become"]
     },
     {
         text: "She asked me _______ come late again.",
-        id: 58,
+        id: 57,
         answer: ["not to"],
         level: 18,
         options: ["not to", "don’t", "please not", "no"]
     },
     {
         text: "We _______ arrived on time if the traffic hadn’t been so bad.",
-        id: 59,
+        id: 58,
         answer: ["would’ve"],
         level: 19,
         options: ["would’ve", "wouldn’t", "had", "would"]
     },
     {
         text: "If you had studied before the test, you _____ failed it.",
-        id: 60,
+        id: 59,
         answer: ["wouldn’t have"],
         level: 19,
         options: ["wouldn’t have", "hadn’t", "didn’t", "would never"]
     },
     {
         text: "What _______ done in that situation if you were me?",
-        id: 61,
+        id: 60,
         answer: ["would you have"],
         level: 19,
         options: ["would you have", "would you", "was being", "had you"]
-    },
-    {
-        text: "<b>Susan: </b>*Was* it raining when you got home last night?</br><b>John: </b>I don't remember. I rarely notice anything when I'm tired, and I *was* exhausted last night.",
-        id: 62,
-        answer: ["was","was"],
-        level: 11
-    },
-    {
-        text: "<b>Rachel: </b>How long *have* you lived in Canada? </br><b>Monica: </b>Since 2004. So, it’s been about 20 years. I love this place, and now it *is* my second home.",
-        id: 63,
-        answer: ["have","is"],
-        level: 12
-    },
-    {
-        text: "<b>Liam: </b>I’ve never seen this kind of bird before. What *is* it? </br><b>Emma: </b>It’s a Scarlet Macaw. They *are* native to Central and South America.",
-        id: 64,
-        answer: ["is","are"],
-        level: 13
-    },
-    {
-        text: "<b>Oliver: </b>What *did* you do when you realized you were lost in the city? </br><b>Mia: </b>First, I panicked. Then, I *asked* a passerby for help. They were really kind and helped me find my way.",
-        id: 65,
-        answer: ["did","asked"],
-        level: 14
     }
 ];

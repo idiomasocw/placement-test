@@ -5,6 +5,12 @@ body {
     color:#0e124d;
 }
 
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px 10px 10px 10px;
+    }
+  }
+
 #results{
     color:white;
     margin-top:10px;
@@ -99,6 +105,17 @@ background: linear-gradient(36deg, rgba(209,255,79,1) 14%, rgba(31,255,188,1) 38
 -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    padding: 10px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 5px 5px 2.5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 5px 2.5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 5px 5px 2.5px 0px rgba(0, 0, 0, 0.75);
+  }
 }
 
 #logo{text-align: center;width: 60px;height: 60px;margin:auto}
