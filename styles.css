@@ -5,12 +5,6 @@ body {
     color:#0e124d;
 }
 
-@media screen and (max-width: 620px) {
-    body {
-        padding: 10px 10px 10px 10px;
-    }
-  }
-
 #results{
     color:white;
     margin-top:10px;
@@ -25,14 +19,33 @@ body {
     font-size: 16px;
     background-color: #4e4caf;
     color: white;
-    position: relative;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     transition: transform 0.3s ease-in-out;
     animation: scaleAnimation 1s infinite alternate;
-    z-index: 5;
 }
+
+@media screen and (max-width: 620px) {
+    body {
+        padding: 10px 10px 10px 10px;
+    }
+
+    .returnToMenu{
+        width: 12rem;
+        padding: 8px;
+        font-size: 16px;
+        background-color: #4e4caf;
+        color: white;
+        position: relative;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: transform 0.3s ease-in-out;
+        animation: scaleAnimation 1s infinite alternate;
+        z-index: 5;
+    }
+  }
 .main-menu {text-align: center;}
 
 .test-button {
