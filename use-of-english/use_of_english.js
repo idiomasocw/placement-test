@@ -100,97 +100,32 @@ function displayQuestion(question) {
     // Clear the previous question
     questionElement.innerHTML = '';
 
-    if (question.audioUrl) {
-        // Check if the audio is from a different question
-        if (currentAudioId !== question.id) {
-            playCount = 0;
-            currentAudioId = question.id;
-        }
+    const grammarPromptContainer = document.createElement('div');
+    grammarPromptContainer.className = 'grammar-prompt'; // Add a class to the grammar prompt container
 
-        questionElement.innerHTML = `
-            <audio id="audio" controls controlsList="nodownload">
-                <source src="${question.audioUrl}" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio><hr>
-        `;
-        const tempContainer = document.createElement('div');
-        tempContainer.className = 'options-container'; // Add a class to the container 
+    const grammarPromptText = document.createElement('p');
+    grammarPromptText.innerHTML = question.text;
+    grammarPromptContainer.appendChild(grammarPromptText);
+    questionElement.appendChild(grammarPromptContainer);
 
-        const grammarPromptContainer = document.createElement('div');
-        grammarPromptContainer.className = 'grammar-prompt'; // Add a class to the grammar prompt container
-        const grammarPromptText = document.createElement('p');
-        grammarPromptText.innerHTML = question.text;
-        grammarPromptContainer.appendChild(grammarPromptText);
-        tempContainer.appendChild(grammarPromptContainer);
-
-        if (question.options) {
-            const optionsContainer = document.createElement('div');
-            optionsContainer.className = 'radio-buttons'; // Add a class to the radio buttons container
-
-            question.options.forEach(option => {
-                const optionElement = document.createElement('input');
-                optionElement.type = 'radio';
-                optionElement.name = 'option';
-                optionElement.className = 'option'; // Add a class to the radio button
-                optionElement.value = option;
-                const optionText = document.createTextNode(option);
-
-                const optionContainer = document.createElement('div');
-                optionContainer.className = 'radio-option'; // Add a class to the option container
-
-                optionContainer.appendChild(optionElement);
-                optionContainer.appendChild(optionText);
-                optionsContainer.appendChild(optionContainer);
-            });
-
-            tempContainer.appendChild(optionsContainer);
-        } else {
-            const textContainer = document.createElement('div');
-            textContainer.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
-            grammarPromptContainer.appendChild(textContainer);
-        }
-
-        while (tempContainer.firstChild) {
-            questionElement.appendChild(tempContainer.firstChild);
-        }
-
-        const audioElement = document.getElementById('audio');
-        audioElement.addEventListener('play', () => {
-            playCount++;
-            if (playCount > 2) {
-                audioElement.pause();
-                audioElement.currentTime = 0;
-                alert('You can only play the recording twice.');
-            }
+    if (question.options) {
+        question.options.forEach(option => {
+            const optionContainer = document.createElement('div');
+            optionContainer.className = 'radio-option'; // Add a class to the option container
+            const optionLabel = document.createElement('label');
+            const optionElement = document.createElement('input');
+            optionElement.type = 'radio';
+            optionElement.name = 'option';
+            optionElement.className = 'option'; // Add a class to the radio button
+            optionElement.value = option;
+            optionLabel.appendChild(optionElement);
+            const optionText = document.createTextNode(option);
+            optionLabel.appendChild(optionText);
+            optionContainer.appendChild(optionLabel);
+            questionElement.appendChild(optionContainer);
         });
     } else {
-        const grammarPromptContainer = document.createElement('div');
-        grammarPromptContainer.className = 'grammar-prompt'; // Add a class to the grammar prompt container
-
-        const grammarPromptText = document.createElement('p');
-        grammarPromptText.innerHTML = question.text;
-        grammarPromptContainer.appendChild(grammarPromptText);
-        questionElement.appendChild(grammarPromptContainer);
-
-        if (question.options) {
-            question.options.forEach(option => {
-                const optionContainer = document.createElement('div');
-                optionContainer.className = 'radio-option'; // Add a class to the option container
-                const optionLabel = document.createElement('label');
-                const optionElement = document.createElement('input');
-                optionElement.type = 'radio';
-                optionElement.name = 'option';
-                optionElement.className = 'option'; // Add a class to the radio button
-                optionElement.value = option;
-                optionLabel.appendChild(optionElement);
-                const optionText = document.createTextNode(option);
-                optionLabel.appendChild(optionText);
-                optionContainer.appendChild(optionLabel);
-                questionElement.appendChild(optionContainer);
-            });
-        } else {
-            questionElement.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
-        }
+        questionElement.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
     }
 
     // Focus the input field

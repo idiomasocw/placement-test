@@ -71,11 +71,11 @@ function getPointsForLevel(level) {
         return 1;
     } else if (level >= 5 && level <= 7) {
         return 3;
-    } else if (level >= 8 && level <= 10) {
+    } else if (level >= 8 && level <= 13) {
         return 9;
-    } else if (level >= 11 && level <= 13) {
+    } else if (level >= 14 && level <= 19) {
         return 27;
-    } else if (level >= 14 && level <= 16) {
+    } else if (level >= 20 && level <= 25) {
         return 81;
     } else {
         return 0;
@@ -102,9 +102,10 @@ function displayQuestion(question) {
             currentAudioId = question.id;
         }
 
+        // Display the audio player
         questionElement.innerHTML = `
         <div class="audioContainer">
-            <audio id="audio" controls controlsList="nodownload" playbackRate="1" disableRemotePlayback">
+            <audio id="audio" controls controlsList="nodownload" playbackRate="1" disableRemotePlayback>
                 <source src="${question.audioUrl}" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
@@ -112,49 +113,55 @@ function displayQuestion(question) {
         <hr>
     `;
     
-    const tempContainer = document.createElement('div');
-    tempContainer.className = 'options-container'; // Add a class to the container
-    
-    if (question.options) {
-        const listeningPromptContainer = document.createElement('div');
-        listeningPromptContainer.className = 'listening-prompt'; // Add a class to the listening prompt container
-    
-        const listeningPromptText = document.createElement('p');
-        listeningPromptText.textContent = question.text;
-        listeningPromptContainer.appendChild(listeningPromptText);
-    
-        tempContainer.appendChild(listeningPromptContainer);
-    
-        const optionsContainer = document.createElement('div');
-        optionsContainer.className = 'radio-buttons'; // Add a class to the radio buttons container
-    
-        question.options.forEach(option => {
-            const optionElement = document.createElement('input');
-            optionElement.type = 'radio';
-            optionElement.name = 'option';
-            optionElement.className = 'option'; // Add a class to the radio button
-            optionElement.value = option;
-            const optionText = document.createTextNode(option);
-    
-            const optionContainer = document.createElement('div');
-            optionContainer.className = 'radio-option'; // Add a class to the option container
-    
-            optionContainer.appendChild(optionElement);
-            optionContainer.appendChild(optionText);
-            optionsContainer.appendChild(optionContainer);
-        });
-    
-        tempContainer.appendChild(optionsContainer);
-    }
+        const tempContainer = document.createElement('div');
+        tempContainer.className = 'options-container'; // Add a class to the container
 
-     else {
-            tempContainer.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
+        if (question.options) {
+            // Display the question text
+            const listeningPromptContainer = document.createElement('div');
+            listeningPromptContainer.className = 'listening-prompt'; // Add a class to the listening prompt container
+
+            const listeningPromptText = document.createElement('p');
+            listeningPromptText.textContent = question.text;
+            listeningPromptContainer.appendChild(listeningPromptText);
+    
+            tempContainer.appendChild(listeningPromptContainer);
+    
+            // Create and display radio buttons for each option
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'radio-buttons'; // Add a class to the radio buttons container
+
+            question.options.forEach(option => {
+                const optionLabel = document.createElement('label');
+                optionLabel.className = 'option-label'; // Add a class to the label
+
+                const optionElement = document.createElement('input');
+                optionElement.type = 'radio';
+                optionElement.name = 'option';
+                optionElement.className = 'option'; // Add a class to the radio button
+                optionElement.value = option;
+
+                const optionText = document.createTextNode(option);
+
+                optionLabel.appendChild(optionElement);
+                optionLabel.appendChild(optionText);
+
+                const optionContainer = document.createElement('div');
+                optionContainer.className = 'radio-option'; // Add a class to the option container
+
+                optionContainer.appendChild(optionLabel);
+                optionsContainer.appendChild(optionContainer);
+            });
+
+            tempContainer.appendChild(optionsContainer);
         }
 
+        // Append the options container to the main question element
         while (tempContainer.firstChild) {
             questionElement.appendChild(tempContainer.firstChild);
         }
 
+        // Add a listener to the audio player to limit play count
         const audioElement = document.getElementById('audio');
         audioElement.addEventListener('play', () => {
             playCount++;
@@ -164,19 +171,8 @@ function displayQuestion(question) {
                 alert('You can only play the recording twice.');
             }
         });
-    } else {
-        if (question.options) {
-            questionElement.innerHTML = question.text + "<br>";
-            question.options.forEach(option => {
-                questionElement.innerHTML += `<div class="radio-option"><input type="radio" name="option" value="${option}">${option}</div>`;
-            });
-            
-        } else {
-            questionElement.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
-        }
     }
 }
-
 
 
 // Checks if the submitted answer matches any of the correct answers
@@ -205,15 +201,35 @@ function updateLevel(correct) {
 // Returns the next available level based on the current level and a step value
 function getNextAvailableLevel(currentLevel, step) {
     let nextLevel = currentLevel + step;
-    while (getNextQuestion(nextLevel) === null && nextLevel >= 1 && nextLevel <= 15) {
-        nextLevel -= Math.sign(step);
-    }
-    // If no question available in next or previous level, return null to signal end of test
-    if (getNextQuestion(nextLevel) === null) {
-        return null;
+    
+    while (getNextQuestion(nextLevel) === null) {
+        // If we're stepping up and there are no more questions at higher levels
+        if (step > 0) {
+            // Try to get a question at the current level
+            if (getNextQuestion(currentLevel) !== null) {
+                return currentLevel;
+            }
+            // If there's no question at the current level, step down
+            else {
+                step = -1;
+            }
+        }
+        // If we're stepping down and there are no more questions at lower levels
+        else if (step < 0) {
+            // If there are no more questions at the current level, it's the end of the test
+            if (getNextQuestion(currentLevel) === null) {
+                return null;
+            }
+            // If there's a question at the current level, return current level
+            else {
+                return currentLevel;
+            }
+        }
+
+        nextLevel += step;
     }
 
-    return Math.min(Math.max(nextLevel, 1), 15);
+    return nextLevel;
 }
 
 
