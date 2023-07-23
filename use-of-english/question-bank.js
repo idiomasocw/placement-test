@@ -149,7 +149,7 @@ var questions = [
         id: 37,
         answer: ["hotter than"],
         level: 12,
-        options: ["hotter that", "more hot", "hotter than", "the hottest that"]
+        options: ["hotter that", "more hot than", "hotter than", "the hottest that"]
     },
     {
         text: "Mount Everest is ___ peak in the world, but K2 is more difficult to climb.",
@@ -159,48 +159,48 @@ var questions = [
         options: ["the higher", "higher than", "a higher that", "the highest"]
     },
     {
-        text: "I’m proud of you. You’re lasagna is now ______ mine.",
+        text: "I'm proud of you. You're lasagna is now ______ mine.",
         id: 39,
         answer: ["as good as"],
         level: 12,
-        options: ["as good as", "more good", "better", "the best"]
+        options: ["more good", "better", "as good as", "the best"]
     },
     {
         text: "She has been studying French ____",
         id: 40,
         answer: ["for two years"],
         level: 13,
-        options: ["for two years", "since two years", "three years ago", "last week"]
+        options: ["since two years", "three years ago", "last week","for two years"]
     },
     {
-        text: "How long _____ him? <br> Since high school",
+        text: "<b>Patricia: </b>How long _____ him? <br>Margaret: <b></b>Since high school",
         id: 41,
         answer: ["have you known"],
         level: 13,
-        options: ["have you known", "are you knowing", "can you know", "does she knew"]
+        options: ["are you knowing", "can you know", "have you known","does she knew"]
     },
     {
-        text: "<b>We: </b>haven’t seen them *since* last year.",
+        text: "We haven't seen them *since* last year. We should pay them a visit.",
         id: 42,
         answer: ["since"],
         level: 13
     },
     {
-        text: "<b>Speaker: </b>When I first moved to New York, the loud city noise and the many people *were* very new to me. I grew up in a small town, so this was a big change for me. In fact, before moving to New York, I *had* never seen a building taller *than* three stories! But over time, I got used *to* the busy city life and its tall buildings. I think I *have* adapted myself very well. I went to college, got a good job and I recently got promoted to operations manager of a big company.",
+        text: "When I first moved to New York, the loud city noise and the many people *were* very new to me. I grew up in a small town, so this was a big change for me. In fact, before moving to New York, I *had* never seen a building taller *than* three stories! But over time, I got used *to* the busy city life and its tall buildings. I think I *have* adapted myself very well. I went to college, got a good job and I recently got promoted to operations manager of a big company.",
         id: 43,
         answer: ["were", "had", "than", "to", "have"],
         level: 14
     },
     {
-        text: "<b>Speaker: </b>Last year, I decided *to* adopt a puppy from the local shelter. I *had* never taken care of a dog before, so it was a big step for me. However, I quickly got used to the routine of feeding and walking her. Now, I can't imagine life without my dog. She *has* brought so much joy into my life. In fact, I’ve *been* thinking of adopting another dog, but my girlfriend says having one dog is more *than* enough.",
+        text: "Last year, I decided *to* adopt a puppy from the local shelter. I *had* never taken care of a dog before, so it was a big step for me. However, I quickly got used to the routine of feeding and walking her. Now, I can't imagine life without my dog. She *has* brought so much joy into my life. In fact, I've *been* thinking of adopting another dog, but my girlfriend says having one dog is more *than* enough.",
         id: 44,
         answer: ["to", "had", "has", "been", "than"],
         level: 14
     },
     {
-        text: "<b>Speaker: </b>When I first started learning guitar, I found it very difficult. Especially because it was my first musical instrument and I *had* never studied music before. *At* the beginning, the strings hurt my fingers so bad, but as time went by, I got used to the feeling of the strings and fell in love *with* the instrument. It’s *been* three years since I first started my guitar lessons, and I think it’s *the* best decision I’ve *made* in my life. I think playing the guitar is really my thing!",
+        text: "When I first started learning guitar, I found it very difficult. Especially because it was my first musical instrument and I *had* never studied music before. *At* the beginning, the strings hurt my fingers so bad, but as time went by, I got used to the feeling of the strings and then fell in love *with* the instrument. It's *been* almost three years since I first started my guitar lessons, and I think it's the best decision I've *made* in my life. I think playing the guitar is really my thing!",
         id: 45,
-        answer: ["had", "At", "with", "been", "the", "made"],
+        answer: ["had", "At", "with", "been", "made"],
         level: 14
     },
     {
@@ -208,7 +208,7 @@ var questions = [
         id: 46,
         answer: ["get used to"],
         level: 15,
-        options: ["get used to", "used to", "accustom", "be used"]
+        options: ["used to", "accustom", "be used","get used to"]
     },
     {
         text: "I ______ play basketball in high school, but I stopped when I went to college due to my busy schedule.",
@@ -218,49 +218,49 @@ var questions = [
         options: ["used to", "accustomed", "was used to", "got used to"]
     },
     {
-        text: "In a few months, _____ the new software we’re implementing. It might seem complicated now, but it will become second nature with practice.",
+        text: "In a few months, _____ the new software we're implementing. It might seem complicated now, but it will become second nature with practice.",
         id: 48,
-        answer: ["you’ll be used to"],
+        answer: ["you'll be used to"],
         level: 15,
-        options: ["you’ll be used to", "you’ll get used", "he’ll be accustomed", "he will accustom to"]
+        options: ["you'll get used", "he'll be accustomed", "you'll be used to", "he will accustom to"]
     },
     {
-        text: "If I ______ you, I wouldn’t worry about money, I’d focus more on making it.",
+        text: "If I ______ you, I wouldn't worry about money, I'd focus more on making it.",
         id: 49,
         answer: ["were"],
         level: 16,
-        options: ["were", "am", "believe", "understand"]
+        options: ["am", "were", "believe", "understand"]
     },
     {
-        text: "I’d never move to a new city if I _____ have a good support system there. Having friends and family close by is essential to me.",
+        text: "I'd never move to a new city if I _____ have a good support system there. Having friends and family close by is essential to me.",
         id: 50,
-        answer: ["didn’t"],
+        answer: ["didn't"],
         level: 16,
-        options: ["didn’t", "couldn’t", "shouldn’t", "need to"]
+        options: ["would", "didn't", "shouldn't", "need to"]
     },
     {
-        text: "I’m still feeling a bit under the weather, but I’ll definitely go to the party if I ___ better tomorrow.",
+        text: "I'm still feeling a bit under the weather, but I'll definitely go to the party if I ___ better tomorrow.",
         id: 51,
         answer: ["feel"],
         level: 16,
-        options: ["feel", "will feel", "will be", "felt"]
+        options: ["will feel", "will be", "felt","feel"]
     },
     {
         text: "The books ____ by genre in this library, making it easier for people to find what they want.",
         id: 52,
         answer: ["are sorted"],
         level: 17,
-        options: ["are sorted", "sort", "are sorting", "will sort"]
+        options: ["sort", "are sorting", "are sorted", "will sort"]
     },
     {
         text: "The new highway _____ to reduce traffic in the city center. It should be completed by the end of next year.",
         id: 53,
         answer: ["is being built"],
         level: 17,
-        options: ["is being built", "will build", "was built", "is building"]
+        options: ["will build","is being built", "was built", "is building"]
     },
     {
-        text: "Don’t worry, your report ______ by the end of the day. I’m working on it so you can check it first thing tomorrow morning.",
+        text: "Don't worry, your report ______ by the end of the day. I'm working on it so you can check it first thing tomorrow morning.",
         id: 54,
         answer: ["will be completed"],
         level: 17,
@@ -271,41 +271,41 @@ var questions = [
         id: 55,
         answer: ["told me"],
         level: 18,
-        options: ["told me", "said me", "mention me", "tells"]
+        options: ["said me", "mention me", "tells", "told me"]
     },
     {
-        text: "When she was a kid, she promised that she would become a famous book writer, and she did it.",
+        text: "When she was a kid, she promised that she _____ a famous book writer, and she did it.",
         id: 56,
         answer: ["would become"],
         level: 18,
-        options: ["would become", "is going to become", "plan to become", "won’t become"]
+        options: ["is going to become", "plan to become", "would become", "won't become"]
     },
     {
         text: "She asked me _______ come late again.",
         id: 57,
         answer: ["not to"],
         level: 18,
-        options: ["not to", "don’t", "please not", "no"]
+        options: ["don't", "not to", "please not", "no"]
     },
     {
-        text: "We _______ arrived on time if the traffic hadn’t been so bad.",
+        text: "We _______ arrived on time if the traffic hadn't been so bad.",
         id: 58,
-        answer: ["would’ve"],
+        answer: ["would've"],
         level: 19,
-        options: ["would’ve", "wouldn’t", "had", "would"]
+        options: ["would've", "wouldn't", "had", "would"]
     },
     {
         text: "If you had studied before the test, you _____ failed it.",
         id: 59,
-        answer: ["wouldn’t have"],
+        answer: ["wouldn't have"],
         level: 19,
-        options: ["wouldn’t have", "hadn’t", "didn’t", "would never"]
+        options: ["hadn't", "didn't", "would never", "wouldn't have"]
     },
     {
         text: "What _______ done in that situation if you were me?",
         id: 60,
         answer: ["would you have"],
         level: 19,
-        options: ["would you have", "would you", "was being", "had you"]
+        options: ["would you", "would you have", "was being", "had you"]
     }
 ];
