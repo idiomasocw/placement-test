@@ -110,6 +110,113 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
     audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A1/good-places.mp3",
     options: ["Yes, I eat lunch in my house", "Yes, there are several goods restaurants in the area", "No, I don't eat lunch in my house"]
 },
+
+{
+    text: "<em>Listen and select the appropriate reply, like in a conversation.</em>",
+    id: 14,
+    answer: ["I was at a party"],
+    level: 4,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A1/last-night.mp3",
+    options: ["I'm in the garden", "He was at home", "She's in class now","I was at a party"]
+},
+
+{
+    text: "<em>Listen and select the appropriate reply, like in a conversation.</em>",
+    id: 15,
+    answer: ["Yes, she did"],
+    level: 4,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A1/understand-the-topic.mp3",
+    options: ["Yes, she did", "No, I didn't", "No you didn't","Yes, he does"]
+},
+{
+    text: "<em>Listen and select the appropriate reply, like in a conversation.</em>",
+    id: 16,
+    answer: ["It was delicious"],
+    level: 4,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A1/enjoy-the-food.mp3",
+    options: ["Not chicken again, please!", "I'm not hungry", "It was delicious"]
+},
+
+{
+    text: "<em>Listen and select the appropriate reply, like in a conversation.</em>",
+    id: 17,
+    answer: ["I think it'll rain tonight"],
+    level: 5,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A2/overcast.mp3",
+    options: ["It's a perfect day for a picnic", "I think it'll rain tonight", "What a beautiful day! It's completely clear"]
+},
+
+{
+    text: "<em>Listen and select the appropriate reply, like in a conversation.</em>",
+    id: 18,
+    answer: ["Let's stay inside and drink hot chocolate"],
+    level: 5,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A2/frosty.mp3",
+    options: ["Let's stay inside and drink hot chocolate", "A good time for a swim, don't you think", "I love this kind of weather for sunbathing"]
+},
+{
+    text: "<em>Listen and select the appropriate reply, like in a conversation.</em>",
+    id: 19,
+    answer: ["Let's go to the beach!"],
+    level: 5,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A2/Sunny.mp3",
+    options: ["You'll need an umbrella for the rain", "Let's go to the beach!", "We should build a snowman"]
+},
+
+{
+    text: "<em>Where is she going?</em>",
+    id: 20,
+    answer: ["To the beach"],
+    level: 6,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A2/Samantha.mp3",
+    options: ["To the library", "To the beach", "To a job interview"]
+},
+
+{
+    text: "<em>Where is he going?</em>",
+    id: 21,
+    answer: ["To his sister's wedding"],
+    level: 6,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A2/John.mp3",
+    options: ["To the gym", "To the beach", "To his sister's wedding"]
+},
+
+{
+    text: "<em>Where is she going?</em>",
+    id: 22,
+    answer: ["To the gym"],
+    level: 6,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A2/Lisa.mp3",
+    options: ["To the gym", "To a wedding", "To a music concert"]
+},
+
+{
+    text: "<em>What's true according to the recording</em>",
+    id: 23,
+    answer: ["It's a good idea to take the metro"],
+    level: 7,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A2/Avoid-traffic.mp3",
+    options: ["Taking the metro isn't a good idea", "It's a good idea to take the metro", "It's not possible for him to take the metro"]
+},
+
+{
+    text: "<em>What's true according to the recording</em>",
+    id: 24,
+    answer: ["The man is not sure they'll need identification"],
+    level: 7,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A2/identification.mp3",
+    options: ["Identification is not necessary to enter the club", "The man is convinced they'll need identification", "The man is not sure they'll need identification"]
+},
+
+{
+    text: "<em>What's true according to the recording</em>",
+    id: 25,
+    answer: ["It's not necessary to bring equipment to the yoga class"],
+    level: 7,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A2/Yoga+class.mp3",
+    options: ["You can't bring any equipment to the yoga class", "You need to bring your own equipment", "It's not necessary to bring equipment to the yoga class"]
+},
+
 {
     text: "<em>Select the option that best describes the situation.</em>",
     id: 26,
