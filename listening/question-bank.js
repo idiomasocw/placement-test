@@ -224,6 +224,24 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
     level: 8,
     audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/Close+the+door.mp3",
     options: ["The man didn't allow the woman to close the door", "The man allowed the woman to close the door", "The woman asked the man to close the door"]
-}
+},
+
+{
+    text: "<em>What can we say about the woman?</em>",
+    id: 27,
+    answer: ["She thinks visiting the Louvre Museum is a good plan"],
+    level: 8,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/Luvre+museum.mp3",
+    options: ["She thinks visiting the Louvre Museum is a good plan", "She needs directions to get to the Louvre Museum", "She's asking general information about the Museum"]
+},
+
+{
+    text: "<em>What does the man want?</em>",
+    id: 28,
+    answer: ["Smaller bills or coins"],
+    level: 8,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/change-for-a-bill.mp3",
+    options: ["Borrow some money", "Buy something from the woman", "Smaller bills or coins","know the cashier's location"]
+},
 
 ];
