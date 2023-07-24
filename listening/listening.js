@@ -122,7 +122,7 @@ function displayQuestion(question) {
             listeningPromptContainer.className = 'listening-prompt'; // Add a class to the listening prompt container
 
             const listeningPromptText = document.createElement('p');
-            listeningPromptText.textContent = question.text;
+            listeningPromptText.innerHTML = question.text;
             listeningPromptContainer.appendChild(listeningPromptText);
     
             tempContainer.appendChild(listeningPromptContainer);
