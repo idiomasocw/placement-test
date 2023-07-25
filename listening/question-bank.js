@@ -243,5 +243,56 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
     audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/change-for-a-bill.mp3",
     options: ["Borrow some money", "Buy something from the woman", "Smaller bills or coins","know the cashier's location"]
 },
+{
+    text: "<em>What is true according to the recording?</em>",
+    id: 29,
+    answer: ["The rain stopped before the end of the class"],
+    level: 9,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/rain+had+stopped.mp3",
+    options: ["The class ended, and then it stopped raining", "The rain stopped before the end of the class", "People got wet because of the rain","They cancelled the class because of the rain"]
+},
+{
+    text: "<em>What is true according to the recording?</em>",
+    id: 30,
+    answer: ["Lisa left before he arrived at the office"],
+    level: 9,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/Pick+up+Lisa.mp3",
+    options: ["Lisa left before he arrived at the office", "Lisa didn't tell the man about her medical appointment", "The man had a medical appointment","Lisa didn't tell the man about her medical appointment"]
+},
 
+{
+    text: "<em>What is true according to the recording?</em>",
+    id: 31,
+    answer: ["Jack had prepared everything for his vacation when his boss called him"],
+    level: 9,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/delayed+vacation.mp3",
+    options: ["Jack went on vacation and resolved the work issue at the same time", "Jack's boss asked him for help two weeks before his vacation", "The work problem happened after Jack came back from his vacation","Jack had prepared everything for his vacation when his boss called him"]
+},
+
+{
+    text: "<em>What did he buy?</em>",
+    id: 32,
+    answer: ["Skateboard"],
+    level: 10,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/New+skateboard.mp3",
+    options: ["Video Game", "Skateboard", "Basketball"]
+},
+
+{
+    text: "<em>What did the woman lose?</em>",
+    id: 33,
+    answer: ["A ring"],
+    level: 10,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/lost+object+1.mp3",
+    options: ["Her purse", "A ring", "A necklace", "A bracelet"]
+},
+
+{
+    text: "<em>What does the woman want to buy?</em>",
+    id: 34,
+    answer: ["A painting"],
+    level: 10,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/on+the+wall.mp3",
+    options: ["A new TV set","A piece of jewelry", "A new dress", "A painting"]
+},
 ];
