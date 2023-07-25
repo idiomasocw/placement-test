@@ -257,7 +257,7 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
     answer: ["Lisa left before he arrived at the office"],
     level: 9,
     audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/Pick+up+Lisa.mp3",
-    options: ["Lisa left before he arrived at the office", "Lisa didn't tell the man about her medical appointment", "The man had a medical appointment","Lisa didn't tell the man about her medical appointment"]
+    options: ["Lisa left before he arrived at the office", "Lisa didn't tell the man about her medical appointment", "The man had a medical appointment"]
 },
 
 {
