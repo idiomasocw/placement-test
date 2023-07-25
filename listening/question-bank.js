@@ -329,7 +329,7 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
     audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/on+the+wall.mp3",
     options: ["A new TV set","A piece of jewelry", "A new dress", "A painting"]
 },
-{
+/* {
     text: "Listen and select all correct replies.",
     id: 35,
     answerType: "multiple",
@@ -337,5 +337,5 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
     level: 11,
     audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A1/What's-up.mp3",
     options: ["I don't know", "Not much", "Great!","No, thank you"]
-},
+}, */
 ];
