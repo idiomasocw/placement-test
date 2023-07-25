@@ -117,45 +117,44 @@ function displayQuestion(question) {
         tempContainer.className = 'options-container'; // Add a class to the container
 
         if (question.options) {
-            // Display the question text
             const listeningPromptContainer = document.createElement('div');
             listeningPromptContainer.className = 'listening-prompt'; // Add a class to the listening prompt container
-
+        
             const listeningPromptText = document.createElement('p');
             listeningPromptText.innerHTML = question.text;
             listeningPromptContainer.appendChild(listeningPromptText);
-    
+        
             tempContainer.appendChild(listeningPromptContainer);
-    
+        
             // Create and display radio buttons for each option
             const optionsContainer = document.createElement('div');
-            optionsContainer.className = 'radio-buttons'; // Add a class to the radio buttons container
-
+            optionsContainer.className = question.answerType === 'single' ? 'radio-buttons' : 'checkbox-buttons';
+        
             question.options.forEach(option => {
                 const optionLabel = document.createElement('label');
                 optionLabel.className = 'option-label'; // Add a class to the label
-
+        
                 const optionElement = document.createElement('input');
-                optionElement.type = 'radio';
+                optionElement.type = question.answerType === 'single' ? 'radio' : 'checkbox';
                 optionElement.name = 'option';
                 optionElement.className = 'option'; // Add a class to the radio button
                 optionElement.value = option;
-
+        
                 const optionText = document.createTextNode(option);
-
+        
                 optionLabel.appendChild(optionElement);
                 optionLabel.appendChild(optionText);
-
+        
                 const optionContainer = document.createElement('div');
                 optionContainer.className = 'radio-option'; // Add a class to the option container
-
+        
                 optionContainer.appendChild(optionLabel);
                 optionsContainer.appendChild(optionContainer);
             });
-
+        
             tempContainer.appendChild(optionsContainer);
         }
-
+        
         // Append the options container to the main question element
         while (tempContainer.firstChild) {
             questionElement.appendChild(tempContainer.firstChild);
@@ -177,13 +176,14 @@ function displayQuestion(question) {
 
 // Checks if the submitted answer matches any of the correct answers
 function checkAnswer(question, answers) {
-    let correctAnswers = 0;
-    for (let i = 0; i < question.answer.length; i++) {
-        if (question.answer[i].toLowerCase() === answers[i].toLowerCase()) {
-            correctAnswers++;
-        }
+    if (question.answerType === 'single') {
+        return question.answer[0].toLowerCase() === answers[0].toLowerCase() ? 1 : 0;
+    } else {
+        // For multiple answer questions, ensure every answer selected by the user is correct
+        // and the user has selected the same number of answers as there are correct answers
+        const correctAnswers = answers.filter(answer => question.answer.includes(answer));
+        return correctAnswers.length === question.answer.length && correctAnswers.length === answers.length ? correctAnswers.length : 0;
     }
-    return correctAnswers;
 }
 
 // Updates the current level and handles the incorrect streak based on the submitted answer
