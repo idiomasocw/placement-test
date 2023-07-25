@@ -202,10 +202,10 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
 {
     text: "<em>What's true according to the recording</em>",
     id: 24,
-    answer: ["The man is not sure they'll need identification"],
+    answer: ["The man doesn't know for sure if they'll need identification"],
     level: 7,
     audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A2/identification.mp3",
-    options: ["Identification is not necessary to enter the club", "The man is convinced they'll need identification", "The man is not sure they'll need identification"]
+    options: ["Identification is not necessary to enter the club", "The man knows for sure they'll need identification", "The man doesn't know for sure if they'll need identification"]
 },
 
 {

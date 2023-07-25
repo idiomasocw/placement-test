@@ -173,7 +173,7 @@ var questions = [
         options: ["since two years", "three years ago", "last week","for two years"]
     },
     {
-        text: "<b>Patricia: </b>How long _____ him? <br>Margaret: <b></b>Since high school",
+        text: "<b>Patricia: </b>How long _____ him? <br><b>Margaret: </b>Since high school",
         id: 41,
         answer: ["have you known"],
         level: 13,
@@ -229,7 +229,7 @@ var questions = [
         id: 49,
         answer: ["were"],
         level: 16,
-        options: ["am", "were", "believe", "understand"]
+        options: ["am", "were", "believe", "would be"]
     },
     {
         text: "I'd never move to a new city if I _____ have a good support system there. Having friends and family close by is essential to me.",

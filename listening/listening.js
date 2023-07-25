@@ -242,13 +242,13 @@ function endTest() {
     let recommendedLevel = '';
     if (points >= 0 && points <= 5) {
         recommendedLevel = 'A1';
-    } else if (points >= 6 && points <= 12) {
+    } else if (points >= 6 && points <= 20) {
         recommendedLevel = 'A2';
-    } else if (points >= 13 && points <= 39) {
+    } else if (points >= 21 && points <= 92) {
         recommendedLevel = 'B1';
-    } else if (points >= 40 && points <= 130) {
+    } else if (points >= 93 && points <= 299) {
         recommendedLevel = 'B2';
-    } else if (points >= 130) {
+    } else if (points >= 300) {
         recommendedLevel = 'C1';
     }
 
