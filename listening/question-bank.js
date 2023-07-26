@@ -1,6 +1,6 @@
 //These are the questions of the test
 var questions = [
-    {
+     {
         text: "Listen and select the appropriate reply, like in a conversation.",
         id: 1,
         answerType: "single",
@@ -319,7 +319,7 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
     audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/lost+object+1.mp3",
     options: ["Her purse", "A ring", "A necklace", "A bracelet"]
 },
-
+ 
 {
     text: "<em>What does the woman want to buy?</em>",
     id: 34,
@@ -329,13 +329,23 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
     audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/on+the+wall.mp3",
     options: ["A new TV set","A piece of jewelry", "A new dress", "A painting"]
 },
-/* {
-    text: "Listen and select all correct replies.",
+ {
+    text: "You will hear a conversation between a teacher and a student named Alice about an upcoming project. <b>Check all the statements that are true.</b>",
     id: 35,
     answerType: "multiple",
-    answer: ["Not much", "I don't know"],
+    answer: ["Alice's project will show how the sun, moon, and stars move and how gravity works", "Ben likes learning about the space too","The teacher suggests that Alice and Ben should do an equal amount of work"],
     level: 11,
-    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/A1/What's-up.mp3",
-    options: ["I don't know", "Not much", "Great!","No, thank you"]
-}, */
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/Science+project.mp3",
+    options: ["Alice's project will be about models", "Alice's project will show how the sun, moon, and stars move and how gravity works", "The teacher doesn't like Alice's project idea", "The teacher thinks Alice shouldn't work with Ben","Ben likes learning about the space too", "The teacher suggests that Alice and Ben should do an equal amount of work"]
+}, 
+
+{
+    text: "You will hear a conversation between two friends, Josh and Mia, about a concert. <b>Check all the statements that are true.</b>",
+    id: 36,
+    answerType: "multiple",
+    answer: ["Mia already knew about the concert","Mia was concerned about the weather","Mia is looking forward to hearing a specific song at the concert"],
+    level: 12,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/A+concert.mp3",
+    options: ["Mia already knew about the concert", "Josh is hoping to get the tickets for the concert", "Mia was concerned about the weather","The concert is going to take place indoors", "According to the weather forecast, it's going to rain on the concert day", "Mia is looking forward to hearing a specific song at the concert"]
+}, 
 ];
