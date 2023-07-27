@@ -8,6 +8,7 @@ body {
 #results{
     color:white;
     margin-top:10px;
+    font-size: 1.7rem;
 }
 
 .returnbutton-wrap{
@@ -118,6 +119,7 @@ body {
 
 #main-menu-ocw{
     color:white;
+    font-size: 3rem;
 }
 
 
@@ -150,7 +152,11 @@ box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 
 #logo{text-align: center;width: 60px;height: 60px;margin:auto}
 #logo-ocw{text-align: center;width: 60px;height: 60px;margin:auto}
-
+#white-logo{display: block;
+    width: 20%;  /* change this to whatever width you want */
+    height: auto;  /* this will keep the aspect ratio of your image intact */
+    margin: 0 auto; /* this will center your image */
+    padding: 5px 0; /* this will add some space above and below your image */}
 .modal {
     position: absolute;
     top: 0;
