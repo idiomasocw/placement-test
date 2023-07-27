@@ -84,7 +84,8 @@ function getPointsForLevel(level) {
 
 // Gets the next question based on the current level and filters out answered questions
 function getNextQuestion(level) {
-    const availableQuestions = questions.filter(q => q.level === level && !questionsAnswered.includes(q));
+    const answeredQuestionIds = questionsAnswered.map(q => q.id); // Get IDs of answered questions
+    const availableQuestions = questions.filter(q => q.level === level && !answeredQuestionIds.includes(q.id));
     if (availableQuestions.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * availableQuestions.length);
     return availableQuestions[randomIndex];
@@ -321,12 +322,25 @@ function submitAnswer() {
     listeningScore += percentageCorrect;
     listeningQuestionsCount++;
 
-    updateLevel(correct);
+    if (correct) {
+        let nextLevel = getNextAvailableLevel(currentLevel, 1);
+        if (nextLevel !== null) {
+            currentLevel = nextLevel;
+        }
+        consecutiveIncorrectAnswers = 0;  // Reset the consecutive incorrect answers counter
+    } else {
+        let previousLevel = getNextAvailableLevel(currentLevel, -1);
+        if (previousLevel !== null) {
+            currentLevel = previousLevel;
+        }
+        incorrectStreak++;
+        consecutiveIncorrectAnswers++;  // Increment the consecutive incorrect answers counter
+        totalIncorrectAnswers++;  // Increment the total incorrect answers counter
+    }
 
-    // If there are no more questions at current level and also in previous level, then end test
-    if (currentLevel === null || consecutiveIncorrectAnswers === 2) {
+    if (consecutiveIncorrectAnswers === 2 || totalIncorrectAnswers === 5) {
         endTest('listening');
-    } else if (totalIncorrectAnswers === 5) {
+    } else if (currentLevel === null) {
         endTest('listening');
     } else {
         startTest();
