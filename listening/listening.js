@@ -105,71 +105,88 @@ function displayQuestion(question) {
         // Display the audio player
         questionElement.innerHTML = `
         <div class="audioContainer">
-            <audio id="audio" controls controlsList="nodownload" playbackRate="1" disableRemotePlayback>
+            <audio id="audio" controlsList="nodownload" playbackRate="1" disableRemotePlayback>
                 <source src="${question.audioUrl}" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
+            <i id="audioPlayButton" class="fa-solid fa-circle-play fa-2xl" style="color: #0e124d; cursor: pointer;"></i>
         </div>
         <hr>
     `;
-    
+
         const tempContainer = document.createElement('div');
         tempContainer.className = 'options-container'; // Add a class to the container
 
         if (question.options) {
             const listeningPromptContainer = document.createElement('div');
             listeningPromptContainer.className = 'listening-prompt'; // Add a class to the listening prompt container
-        
+
             const listeningPromptText = document.createElement('p');
             listeningPromptText.innerHTML = question.text;
             listeningPromptContainer.appendChild(listeningPromptText);
-        
+
             tempContainer.appendChild(listeningPromptContainer);
-        
+
             // Create and display radio buttons for each option
             const optionsContainer = document.createElement('div');
             optionsContainer.className = question.answerType === 'single' ? 'radio-buttons' : 'checkbox-buttons';
-        
+
             question.options.forEach(option => {
                 const optionLabel = document.createElement('label');
                 optionLabel.className = 'option-label'; // Add a class to the label
-        
+
                 const optionElement = document.createElement('input');
                 optionElement.type = question.answerType === 'single' ? 'radio' : 'checkbox';
                 optionElement.name = 'option';
                 optionElement.className = 'option'; // Add a class to the radio button
                 optionElement.value = option;
-        
+
                 const optionText = document.createTextNode(option);
-        
+
                 optionLabel.appendChild(optionElement);
                 optionLabel.appendChild(optionText);
-        
+
                 const optionContainer = document.createElement('div');
                 optionContainer.className = 'radio-option'; // Add a class to the option container
-        
+
                 optionContainer.appendChild(optionLabel);
                 optionsContainer.appendChild(optionContainer);
             });
-        
+
             tempContainer.appendChild(optionsContainer);
         }
-        
+
         // Append the options container to the main question element
         while (tempContainer.firstChild) {
             questionElement.appendChild(tempContainer.firstChild);
         }
 
-        // Add a listener to the audio player to limit play count
-        const audioElement = document.getElementById('audio');
-        audioElement.addEventListener('play', () => {
-            playCount++;
-            if (playCount > 2) {
-                audioElement.pause();
-                audioElement.currentTime = 0;
-                alert('You can only play the recording twice.');
-            }
-        });
+// Add a listener to the Font Awesome play button to handle audio play
+const audioElement = document.getElementById('audio');
+const audioPlayButton = document.getElementById('audioPlayButton');
+
+audioPlayButton.addEventListener('click', () => {
+    // If the playCount is under the limit, play the audio
+    if (playCount < 2) {
+        audioElement.play();
+    }
+
+    // If the playCount reaches the limit, alert the user, disable the play button and change its color
+    if (playCount == 2) {
+        alert('You can only play the recording twice.');
+        audioPlayButton.classList.add('disabled');
+    }
+});
+
+// Listen for the audio ending and increment the play count
+audioElement.addEventListener('ended', () => {
+    playCount++;
+
+    if (playCount < 2) {
+        audioPlayButton.classList.remove('disabled');
+    }
+});
+
     }
 }
 

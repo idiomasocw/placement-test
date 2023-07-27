@@ -329,9 +329,19 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
     audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/on+the+wall.mp3",
     options: ["A new TV set","A piece of jewelry", "A new dress", "A painting"]
 },
+
+{
+    text: "You will hear a conversation between a mother and her son, Max, about his summer plans. <b>Check all the statements that are true.</b>",
+    id: 35,
+    answerType: "multiple",
+    answer: ["Max will be attending the science camp with more of his friends this year","Max's mother wants him to start packing for the camp early"],
+    level: 11,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/Science+camp.mp3",
+    options: ["Max hasn't made up his mind about what he wants to do this summer","Max had a great time at the science camp last year", "The location of the science camp has remained the same as last year","Max will be attending the science camp with more of his friends this year","The new location of the science camp is at a beach house","Max's mother wants him to start packing for the camp early"]
+}, 
  {
     text: "You will hear a conversation between a teacher and a student named Alice about an upcoming project. <b>Check all the statements that are true.</b>",
-    id: 35,
+    id: 36,
     answerType: "multiple",
     answer: ["Alice's project will show how the sun, moon, and stars move and how gravity works", "Ben likes learning about the space too","The teacher suggests that Alice and Ben should do an equal amount of work"],
     level: 11,
@@ -341,11 +351,21 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
 
 {
     text: "You will hear a conversation between two friends, Josh and Mia, about a concert. <b>Check all the statements that are true.</b>",
-    id: 36,
+    id: 37,
     answerType: "multiple",
     answer: ["Mia already knew about the concert","Mia was concerned about the weather","Mia is looking forward to hearing a specific song at the concert"],
     level: 12,
     audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/A+concert.mp3",
     options: ["Mia already knew about the concert", "Josh is hoping to get the tickets for the concert", "Mia was concerned about the weather","The concert is going to take place indoors", "According to the weather forecast, it's going to rain on the concert day", "Mia is looking forward to hearing a specific song at the concert"]
 }, 
+
+/* {
+    text: "You will hear a conversation between two colleagues, Mark and Laura, about a work project. <b>Check all the statements that are true.</b>",
+    id: 38,
+    answerType: "multiple",
+    answer: ["Mia already knew about the concert","Mia was concerned about the weather","Mia is looking forward to hearing a specific song at the concert"],
+    level: 12,
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/A+concert.mp3",
+    options: ["Mia already knew about the concert", "Josh is hoping to get the tickets for the concert", "Mia was concerned about the weather","The concert is going to take place indoors", "According to the weather forecast, it's going to rain on the concert day", "Mia is looking forward to hearing a specific song at the concert"]
+},  */
 ];
