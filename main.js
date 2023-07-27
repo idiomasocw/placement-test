@@ -8,7 +8,7 @@ window.onload = function() {
     tests.forEach((test) => {
         const result = localStorage.getItem(test);
         if (result) {
-            const { points, listeningAverageScore, useOfEnglishAverageScore, recommendedLevel } = JSON.parse(result);
+            const { points, listeningAverageScore, useOfEnglishAverageScore, recommendedLevel,timeTaken } = JSON.parse(result);
             let additionalContent = '';
 
             if (test === 'use_of_english') {
@@ -23,6 +23,7 @@ window.onload = function() {
                     <p>Points: ${points}</p>
                     ${additionalContent}
                     <p>Recommended Level: ${recommendedLevel}</p>
+                    <P>Time Taken:${timeTaken}</P>
                 </div>
             `;
 

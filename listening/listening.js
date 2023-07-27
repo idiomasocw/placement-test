@@ -258,6 +258,11 @@ function endTest() {
     testInProgress = false;
     clearInterval(timer);
     let recommendedLevel = '';
+    let endTime = new Date();
+    let timeTaken = endTime - startTime;
+    let minutesTaken = Math.floor(timeTaken / 60000);
+    let secondsTaken = ((timeTaken % 60000) / 1000).toFixed(0);
+
     if (points >= 0 && points <= 5) {
         recommendedLevel = 'A1';
     } else if (points >= 6 && points <= 29) {
@@ -276,19 +281,24 @@ function endTest() {
     answerForm.style.display = "none";
     messageElement.style.display = "none";
 
+    // Add leading zeros if minutes or seconds are less than 10
+    minutesTaken = minutesTaken < 10 ? '0' + minutesTaken : minutesTaken;
+    secondsTaken = secondsTaken < 10 ? '0' + secondsTaken : secondsTaken;
     let testResult = {
         testType: 'listening',
         points: points,
         listeningAverageScore: listeningAverageScore,
-        recommendedLevel: recommendedLevel
+        recommendedLevel: recommendedLevel,
+        timeTaken: minutesTaken + ":" + secondsTaken // Add the time taken
     };
 
     localStorage.setItem('listening', JSON.stringify(testResult));
 }
 
-
+let startTime;
 // Starts the test by getting the next question and displaying it
 function startTest() {
+    startTime = new Date(); // Set the start time when the test starts
     const returnButton = document.querySelector('.returnToMenu');
     returnButton.classList.add('scaled');
     const question = getNextQuestion(currentLevel);

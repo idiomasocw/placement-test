@@ -26,8 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-//This is the start timer function
+let startTime;  // Variable to store the start time
+
 function startTimer() {
+    startTime = new Date();  // Save the start time
     timer = setInterval(() => {
         timeElapsed--;
         updateStopwatch();
@@ -37,6 +39,7 @@ function startTimer() {
         }
     }, 1000);
 }
+
 
 function updateStopwatch() {
     const stopwatch = document.getElementById('stopwatch');
@@ -192,7 +195,6 @@ function getNextAvailableLevel(currentLevel, step) {
 }
 
 
-
 // Ends the test, displays the final score and hides the form
 function endTest(testType) {  // Add testType argument to differentiate between tests
     testInProgress = false;
@@ -200,6 +202,11 @@ function endTest(testType) {  // Add testType argument to differentiate between 
     returnButton.classList.remove('scaled');
     clearInterval(timer); // This line wil stop the timer
     let recommendedLevel = '';
+    let endTime = new Date();
+    let timeTaken = endTime - startTime;
+    let minutesTaken = Math.floor(timeTaken / 60000);
+    let secondsTaken = ((timeTaken % 60000) / 1000).toFixed(0);
+
     if (points >= 0 && points <= 15) {
         recommendedLevel = 'A1';
     } else if (points >= 16 && points <= 65) {
@@ -219,15 +226,19 @@ function endTest(testType) {  // Add testType argument to differentiate between 
     answerForm.style.display = "none";
     messageElement.style.display = "none";
     
-    // Save the test result into session storage
 // Save the test result into local storage
-let testResult = {
-    testType: testType,
-    points: points,
-    listeningAverageScore: listeningAverageScore,
-    useOfEnglishAverageScore: useOfEnglishAverageScore,
-    recommendedLevel: recommendedLevel
-};
+// Add leading zeros if minutes or seconds are less than 10
+    minutesTaken = minutesTaken < 10 ? '0' + minutesTaken : minutesTaken;
+    secondsTaken = secondsTaken < 10 ? '0' + secondsTaken : secondsTaken;
+
+    let testResult = {
+        testType: testType,
+        points: points,
+        listeningAverageScore: listeningAverageScore,
+        useOfEnglishAverageScore: useOfEnglishAverageScore,
+        recommendedLevel: recommendedLevel,
+        timeTaken: minutesTaken + ":" + secondsTaken // Add the time taken
+    };
 
 localStorage.setItem(testType, JSON.stringify(testResult));
 
