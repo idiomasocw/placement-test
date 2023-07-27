@@ -18,7 +18,7 @@ window.onload = function() {
             }
 
             htmlContent += `
-                <div><a id="walink" href="https://wa.link/tldshy"><i class="fa-brands fa-whatsapp fa-xl" style="color: #95ff74;"></i> Escribenos</a></div><br>
+                <div><a id="walink" href="https://wa.link/tldshy"><i class="fa-brands fa-whatsapp fa-2xl" style="color: #95ff74;"></i> Escribenos</a></div><br>
                 <div class="result">
                     <h2>${test.replace(/_/g, ' ').toUpperCase()} Results</h2>
                     <p>Points: ${points}</p>
