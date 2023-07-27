@@ -87,13 +87,14 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
+    font-size: 1.5rem;
     height: 0;
     font-weight: bold;
     background-color: #0e124d91;
     color: white;
     text-transform: uppercase;
     text-align: center;
-    line-height: 200px; /* Vertically center the text */
+    line-height: 250px; /* Vertically center the text */
     transition: height 0.3s ease;
     overflow: hidden;
 }
@@ -113,13 +114,19 @@ body {
     background-color: rgba(41, 47, 140, 0.3);
 }
 
+#header-wrapper{display: flex;
+flex-direction: column;
+    align-self: center;
+}
+
 #main-menu-header{
     color:white;
+    font-size: 1.2rem;
 }
 
 #main-menu-ocw{
     color:white;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 
@@ -153,13 +160,10 @@ box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 #logo{text-align: center;width: 60px;height: 60px;margin:auto}
 #logo-ocw{text-align: center;width: 60px;height: 60px;margin:auto}
 #white-logo{/* display: block; */
-    position: absolute;
-    left: 40px;
-    top: 10px;
     width: 15%;  /* change this to whatever width you want */
     height: auto;  /* this will keep the aspect ratio of your image intact */
     margin: 0 auto; /* this will center your image */
-    padding: 5px 0; /* this will add some space above and below your image */}
+    }
 .modal {
     position: absolute;
     top: 0;
@@ -278,7 +282,6 @@ audio#audio{opacity: 0.85;background-color: #45a049;border-radius: 22px;}
 }
 
 .result h2 {
-    margin: 0 0 10px;
     font-size: 24px;
     text-transform: uppercase;
 }
