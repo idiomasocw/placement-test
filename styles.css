@@ -226,15 +226,17 @@ button {
     font-size: 16px;
     background-color: #95ff74;
     color: #0e124d;
-    font-weight:560;
+    font-weight: 560;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+
 button:hover {
-    background-color: #45a049;
-    color:white;
+    background-color:#4e4caf;
+    color: #95ff74;
 }
 
 #question{text-align: center;margin-bottom: 1rem;
