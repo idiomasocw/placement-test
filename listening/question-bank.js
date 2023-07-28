@@ -106,7 +106,7 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
 },
 
 {
-    text: "<em>Listen and select the appropriate reply, like in a conversation.</em>",
+    text: "<em>What is true according to the recording?</em>",
     id: 12,
     answerType: "single",
     answer: ["The woman enjoys dancing Salsa"],
