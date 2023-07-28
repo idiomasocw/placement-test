@@ -263,9 +263,9 @@ function endTest() {
     let minutesTaken = Math.floor(timeTaken / 60000);
     let secondsTaken = ((timeTaken % 60000) / 1000).toFixed(0);
 
-    if (points >= 0 && points <= 5) {
+    if (points >= 0 && points <= 8) {
         recommendedLevel = 'A1';
-    } else if (points >= 6 && points <= 29) {
+    } else if (points >= 9 && points <= 29) {
         recommendedLevel = 'A2';
     } else if (points >= 30 && points <= 160) {
         recommendedLevel = 'B1';
