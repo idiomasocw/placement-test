@@ -359,13 +359,13 @@ options: ["(321) 502-4567", "(321) 482-4567", "(321) 582-4537"]
     options: ["Mia already knew about the concert", "Josh is hoping to get the tickets for the concert", "Mia was concerned about the weather","The concert is going to take place indoors", "According to the weather forecast, it's going to rain on the concert day", "Mia is looking forward to hearing a specific song at the concert"]
 }, 
 
-/* {
+ {
     text: "You will hear a conversation between two colleagues, Mark and Laura, about a work project. <b>Check all the statements that are true.</b>",
     id: 38,
     answerType: "multiple",
-    answer: ["Mia already knew about the concert","Mia was concerned about the weather","Mia is looking forward to hearing a specific song at the concert"],
+    answer: ["Mark and Laura need to work on the Peterson account","The financial report for the Johnston account is completed"],
     level: 12,
-    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/A+concert.mp3",
-    options: ["Mia already knew about the concert", "Josh is hoping to get the tickets for the concert", "Mia was concerned about the weather","The concert is going to take place indoors", "According to the weather forecast, it's going to rain on the concert day", "Mia is looking forward to hearing a specific song at the concert"]
-},  */
+    audioUrl: "https://ocw-program.s3.amazonaws.com/Placement-test/Audio/B1/Project+report.mp3",
+    options: ["Mark and Laura need to work on the Peterson account", "Laura is working on the Johnston account today", "The financial report for the Johnston account is completed","Mark and Laura have already discussed the strategy for the Miller account", "Laura doesn't agree on discussing the Miller account", "The Peterson report is already finished."]
+},
 ];

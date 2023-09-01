@@ -1,6 +1,6 @@
 // Variables for stopwatch
 let timer;
-let timeLimit = 30 * 60; // 60 minutes in seconds
+let timeLimit = 20 * 60; // 60 minutes in seconds
 let timeElapsed = timeLimit;
 let totalIncorrectAnswers = 0;
 let consecutiveIncorrectAnswers = 0;
