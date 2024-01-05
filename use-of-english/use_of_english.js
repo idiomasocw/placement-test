@@ -141,7 +141,10 @@ function displayQuestion(question) {
 function checkAnswer(question, answers) {
     let correctAnswers = 0;
     for (let i = 0; i < question.answer.length; i++) {
-        if (question.answer[i].toLowerCase() === answers[i].toLowerCase()) {
+        // Split the correct answers string into an array of possible answers
+        let possibleAnswers = question.answer[i].split("|").map(ans => ans.toLowerCase().trim());
+        // Check if the submitted answer matches any of the possible answers
+        if (possibleAnswers.includes(answers[i].toLowerCase().trim())) {
             correctAnswers++;
         }
     }

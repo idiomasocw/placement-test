@@ -1,6 +1,6 @@
 //These are the questions of the test
 var questions = [
-    {text: "<b>Lucy: </b>*What* is your name? <br><b>Mark:</b>My name's Mark.", id:1, answer: ["is"], level: 1},
+    {text: "<b>Lucy: </b>*What* is your name? <br><b>Mark:</b>My name's Mark.", id:1, answer: ["What"], level: 1},
     {
         text: "<b>Paul: </b>___ you so much for your help. <br><b>Lucy: </b> You're welcome",
         id: 2,
