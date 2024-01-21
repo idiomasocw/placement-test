@@ -54,6 +54,13 @@ function pad(number) {
     return number.toString().padStart(2, '0');
 }
 
+// Utility function to shuffle an array (Fisher-Yates shuffle algorithm)
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
 const questionElement = document.getElementById('question');
 const answerForm = document.getElementById('answer-form');
@@ -103,39 +110,120 @@ function displayQuestion(question) {
     // Clear the previous question
     questionElement.innerHTML = '';
 
+    // Create a container for the question and image (if any)
+    const questionContainer = document.createElement('div');
+    questionContainer.className = 'question-container'; // Add a class to the question container for flex styling
+
     const grammarPromptContainer = document.createElement('div');
     grammarPromptContainer.className = 'grammar-prompt'; // Add a class to the grammar prompt container
 
-    const grammarPromptText = document.createElement('p');
-    grammarPromptText.innerHTML = question.text;
-    grammarPromptContainer.appendChild(grammarPromptText);
-    questionElement.appendChild(grammarPromptContainer);
+    // Check if the question has an image URL and create an img element if it does
+    if (question.url) {
+        const questionImage = document.createElement('img');
+        questionImage.src = question.url;
+        questionImage.className = 'questionPic'; // Add class for styling the image
+        grammarPromptContainer.appendChild(questionImage); // Append the image to the grammar prompt container
+    }
 
     if (question.options) {
+        // Append the grammar prompt to the grammar prompt container
+        const grammarPromptText = document.createElement('p');
+        grammarPromptText.innerHTML = question.text;
+        grammarPromptContainer.appendChild(grammarPromptText);
+
+        // Shuffle the options array for randomness
+        shuffleArray(question.options);
+
         question.options.forEach(option => {
             const optionContainer = document.createElement('div');
             optionContainer.className = 'radio-option'; // Add a class to the option container
+            
+            // Add event listener to the optionContainer for better UX
+            optionContainer.addEventListener('click', () => {
+                // Find the radio input inside this optionContainer and check it
+                const inputElement = optionContainer.querySelector('input[type="radio"]');
+                if (inputElement) {
+                    inputElement.checked = true;
+                }
+        
+                // Remove 'selected' class from all options
+                const allOptions = document.querySelectorAll('.radio-option');
+                allOptions.forEach(opt => opt.classList.remove('selected'));
+        
+                // Add 'selected' class to the clicked optionContainer
+                optionContainer.classList.add('selected');
+            });
+        
             const optionLabel = document.createElement('label');
             const optionElement = document.createElement('input');
             optionElement.type = 'radio';
             optionElement.name = 'option';
             optionElement.className = 'option'; // Add a class to the radio button
             optionElement.value = option;
+            
+            // Hide the default radio button visually but make it accessible
+            optionElement.style.opacity = 0;
+            optionElement.style.position = 'absolute';
+            optionElement.style.left = '-9999px';
+        
             optionLabel.appendChild(optionElement);
             const optionText = document.createTextNode(option);
             optionLabel.appendChild(optionText);
             optionContainer.appendChild(optionLabel);
-            questionElement.appendChild(optionContainer);
+            grammarPromptContainer.appendChild(optionContainer); // Append the option to the grammar prompt container
         });
-    } else {
-        questionElement.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
+
+        // Append the 'Omit this question' option at the end
+        const omitOptionContainer = document.createElement('div');
+        omitOptionContainer.className = 'radio-option';
+
+        // Add event listener to the omitOptionContainer for better UX
+omitOptionContainer.addEventListener('click', () => {
+    // Find the radio input inside this omitOptionContainer and check it
+    const inputElement = omitOptionContainer.querySelector('input[type="radio"]');
+    if (inputElement) {
+        inputElement.checked = true;
     }
+
+    // Remove 'selected' class from all options
+    const allOptions = document.querySelectorAll('.radio-option');
+    allOptions.forEach(opt => opt.classList.remove('selected'));
+
+    // Add 'selected' class to the clicked omitOptionContainer
+    omitOptionContainer.classList.add('selected');
+});
+        
+        const omitOptionLabel = document.createElement('label');
+        const omitOptionElement = document.createElement('input');
+        omitOptionElement.type = 'radio';
+        omitOptionElement.name = 'option';
+        omitOptionElement.className = 'option'; 
+        omitOptionElement.value = 'Omit this question. I don\'t know the answer';
+        
+        omitOptionElement.style.opacity = 0;
+        omitOptionElement.style.position = 'absolute';
+        omitOptionElement.style.left = '-9999px';
+        
+        omitOptionLabel.appendChild(omitOptionElement);
+        const omitOptionText = document.createTextNode('Omit this question. I don\'t know the answer');
+        omitOptionLabel.appendChild(omitOptionText);
+        omitOptionContainer.appendChild(omitOptionLabel);
+        grammarPromptContainer.appendChild(omitOptionContainer); // Append the 'Omit' option last
+    } else {
+        // For fill-in-the-gaps question type
+        grammarPromptContainer.innerHTML = question.text.replace(/\*(.*?)\*/g, '<input type="text" class="blank">');
+    }
+
+    // Append the grammar prompt container to the question container
+    questionContainer.appendChild(grammarPromptContainer);
+
+    // Append the question container to the main question element
+    questionElement.appendChild(questionContainer);
 
     // Focus the input field
     const inputField = document.querySelector('.blank');
     if (inputField) inputField.focus();
 }
-
 
 // Checks if the submitted answer matches any of the correct answers
 function checkAnswer(question, answers) {
