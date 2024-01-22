@@ -62,6 +62,7 @@ function shuffleArray(array) {
     }
 }
 
+
 const questionElement = document.getElementById('question');
 const answerForm = document.getElementById('answer-form');
 const messageElement = document.getElementById('message');
@@ -79,15 +80,15 @@ let useOfEnglishQuestionsCount = 0;  // Number of use of english questions attem
 
 // Returns points based on the question level
 function getPointsForLevel(level) {
-    if (level >= 1 && level <= 4) {
+    if (level >= 1 && level <= 4) { //A1
         return 1;
-    } else if (level >= 5 && level <= 7) {
+    } else if (level >= 5 && level <= 7) { //A2
         return 3;
-    } else if (level >= 8 && level <= 13) {
-        return 9;
-    } else if (level >= 14 && level <= 19) {
+    } else if (level >= 8 && level <= 13) { //B1
+        return 9; 
+    } else if (level >= 14 && level <= 20) { //B2
         return 27;
-    } else if (level >= 20 && level <= 25) {
+    } else if (level >= 21 && level <= 25) { //C1
         return 81;
     } else {
         return 0;
@@ -225,6 +226,7 @@ omitOptionContainer.addEventListener('click', () => {
     if (inputField) inputField.focus();
 }
 
+
 // Checks if the submitted answer matches any of the correct answers
 function checkAnswer(question, answers) {
     let correctAnswers = 0;
@@ -298,15 +300,15 @@ function endTest(testType) {  // Add testType argument to differentiate between 
     let minutesTaken = Math.floor(timeTaken / 60000);
     let secondsTaken = ((timeTaken % 60000) / 1000).toFixed(0);
 
-    if (points >= 0 && points <= 15) {
+    if (points >= 0 && points <= 18) {
         recommendedLevel = 'A1';
-    } else if (points >= 16 && points <= 65) {
+    } else if (points >= 19 && points <= 45) {
         recommendedLevel = 'A2';
-    } else if (points >= 66 && points <= 115) {
+    } else if (points >= 46 && points <= 190) {
         recommendedLevel = 'B1';
-    } else if (points >= 116 && points <= 150) {
+    } else if (points >= 191 && points <= 333) {
         recommendedLevel = 'B2';
-    } else if (points >= 151) {
+    } else if (points >= 334) {
         recommendedLevel = 'C1';
     }
     // Calculate average scores for each category
@@ -333,6 +335,10 @@ function endTest(testType) {  // Add testType argument to differentiate between 
 
 localStorage.setItem(testType, JSON.stringify(testResult));
 
+    // Redirect the user to the listening test section after 1 second
+    setTimeout(() => {
+        window.location.href = '/placement-test/listening';
+    }, 900);  // Redirect after 1 second
 }
 
 
@@ -374,7 +380,7 @@ function submitAnswer() {
     const correctAnswers = checkAnswer(question, answers);
 
     const percentageCorrect = (correctAnswers / question.answer.length) * 100;
-    const correct = percentageCorrect >= 69;
+    const correct = percentageCorrect >= 70;
 
     // Add points for each correct answer
     for (let i = 0; i < correctAnswers; i++) {

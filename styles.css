@@ -268,6 +268,7 @@ button {
 button:hover {
     background-color:#4e4caf;
     color: #95ff74;
+    font-weight: bold;
 }
 
 #question{text-align: center;margin-bottom: 1rem;
@@ -397,11 +398,17 @@ width: 100%;}
 }
 
 .listening-prompt{
-    margin-bottom: 10px;
-    background-color: rgba(225, 249, 228, 0.31);
+    margin:auto;
+    /* background-color: rgba(225, 249, 228, 0.31); */
     border-radius: 10px;
-    padding: 2px;
-    border: #fff solid 1px;
+    padding: 0.5rem;
+    /* border: #fff solid 1px; */
+    flex: 2;
+    order:1;
+    text-align: left;
+    background-color: #006db5;
+    color: white;
+    line-height: 1.3;
 }
 
 .grammar-prompt{
@@ -413,6 +420,9 @@ width: 100%;}
     flex: 2;
     order:1;
     text-align: left;
+    background-color: #006db5;
+    color: white;
+    line-height: 1.3;
 }
   
   @keyframes scaleAnimation {
@@ -455,8 +465,6 @@ width: 100%;}
     .grammar-prompt{
         padding: 1rem;
         border-radius: 5px;
-        background-color: #006db5;
-        color: white;
     }
 }
 
